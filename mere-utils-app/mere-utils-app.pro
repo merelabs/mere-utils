@@ -6,9 +6,14 @@ TEMPLATE = app
 SOURCES += \
         src/main.cpp \
 
-#HEADERS += \
+HEADERS += \
 
 
+DEPENDPATH += . ../lib
+INCLUDEPATH += ../include
+
+LIBS += -L$$PWD/../lib -lmere-utils
+LIBS += -lX11
 
 #
 # Install
