@@ -14,13 +14,17 @@ DEFINES += QT_DEPRECATED_WARNINGS MERE_UTILS_LIB
 SOURCES += \
         src/mereutils.cpp \
     src/meresignal.cpp \
-    src/merestringutils.cpp
+    src/merestringutils.cpp \
+    src/mereprocessutils.cpp \
+    src/merefileutils.cpp
 
 HEADERS += \
         src/mereutils.h \
         src/mereutilsglobal.h \
     src/meresignal.h \
-    src/merestringutils.h
+    src/merestringutils.h \
+    src/mereprocessutils.h \
+    src/merefileutils.h
 
 
 LIBS += -lX11
