@@ -12,7 +12,9 @@ public:
     static bool isExist(const QString &path);
     static bool isNotExist(const QString &path);
     static bool isBinary(const QString &path);
+    static bool isNotBinary(const QString &path);
     static bool isExecutable(const QString &path);
+    static bool isNotExecutable(const QString &path);
 };
 
 #endif // MEREFILEUTILS_H

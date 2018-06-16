@@ -42,6 +42,11 @@ bool MereFileUtils::isBinary(const QString &path)
     return false;
 }
 
+bool MereFileUtils::isNotBinary(const QString &path)
+{
+    return !isBinary(path);
+}
+
 bool MereFileUtils::isExecutable(const QString &path)
 {
     if (MereFileUtils::isExist(path))
@@ -51,4 +56,9 @@ bool MereFileUtils::isExecutable(const QString &path)
     }
 
     return false;
+}
+
+bool MereFileUtils::isNotExecutable(const QString &path)
+{
+    return !isExecutable(path);
 }
