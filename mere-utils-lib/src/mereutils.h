@@ -5,9 +5,11 @@
 
 class MERE_UTILS_LIBSPEC MereUtils
 {
+private:
+    MereUtils();
 
 public:
-    MereUtils();
+    static void expandEnvVar(QString &str);
 };
 
 #endif // MEREUTILS_H
