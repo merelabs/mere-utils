@@ -2,6 +2,7 @@ TEMPLATE = subdirs
 CONFIG+=ordered
 SUBDIRS = \
         mere-utils-lib     \  # mere-utils-lib
+        mere-widgets-lib   \  # mere-widgets-lib
         mere-utils-app     \  # mere-utils-app
         mere-utils-test    \  # mere-utils-test
 
