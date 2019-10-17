@@ -41,4 +41,16 @@ QMAKE_POST_LINK += $$QMAKE_COPY $$quote($$PWD/$$HEADERS) $$quote($$INCDIR) $$esc
 unix {
     target.path = /usr/local/lib
     INSTALLS += target
+
+    INSTALL_PREFIX = /usr/local/include/mere/utils
+    for(header, HEADERS) {
+        sdir = $${dirname(header)}
+        sdir = $$replace(sdir, "src", "")
+        path = $${INSTALL_PREFIX}$${sdir}
+
+        eval(headers_$${path}.files += $$header)
+        eval(headers_$${path}.path = $$path)
+        eval(INSTALLS *= headers_$${path})
+    }
 }
+

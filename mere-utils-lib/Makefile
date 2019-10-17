@@ -164,7 +164,7 @@ DIST          = /usr/local/lib/qt5/mkspecs/features/spec_pre.prf \
 		/usr/local/lib/qt5/mkspecs/features/qt_config.prf \
 		/usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf \
 		/usr/local/lib/qt5/mkspecs/features/spec_post.prf \
-		../.qmake.stash \
+		.qmake.stash \
 		/usr/local/lib/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/local/lib/qt5/mkspecs/features/toolchain.prf \
 		/usr/local/lib/qt5/mkspecs/features/default_pre.prf \
@@ -333,7 +333,7 @@ Makefile: mere-utils-lib.pro /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf
 		/usr/local/lib/qt5/mkspecs/features/qt_config.prf \
 		/usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf \
 		/usr/local/lib/qt5/mkspecs/features/spec_post.prf \
-		../.qmake.stash \
+		.qmake.stash \
 		/usr/local/lib/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/local/lib/qt5/mkspecs/features/toolchain.prf \
 		/usr/local/lib/qt5/mkspecs/features/default_pre.prf \
@@ -454,7 +454,7 @@ Makefile: mere-utils-lib.pro /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf
 /usr/local/lib/qt5/mkspecs/features/qt_config.prf:
 /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf:
 /usr/local/lib/qt5/mkspecs/features/spec_post.prf:
-../.qmake.stash:
+.qmake.stash:
 /usr/local/lib/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/local/lib/qt5/mkspecs/features/toolchain.prf:
 /usr/local/lib/qt5/mkspecs/features/default_pre.prf:
@@ -500,6 +500,7 @@ clean: compiler_clean
 distclean: clean 
 	-$(DEL_FILE) ../lib/$(TARGET) 
 	-$(DEL_FILE) ../lib/$(TARGET0) ../lib/$(TARGET1) ../lib/$(TARGET2) $(TARGETA)
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -531,11 +532,11 @@ moc_meresignal.cpp: src/meresignal.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -627,11 +628,11 @@ mereutils.o: src/mereutils.cpp src/mereutils.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -708,11 +709,11 @@ meresignal.o: src/meresignal.cpp src/meresignal.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -788,11 +789,11 @@ merestringutils.o: src/merestringutils.cpp src/merestringutils.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -833,11 +834,11 @@ mereprocessutils.o: src/mereprocessutils.cpp src/mereprocessutils.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -900,11 +901,11 @@ merefileutils.o: src/merefileutils.cpp src/merefileutils.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -999,9 +1000,28 @@ uninstall_target: FORCE
 	-$(DEL_DIR) $(INSTALL_ROOT)/usr/local/lib/ 
 
 
-install: install_target  FORCE
+install_headers_/usr/local/include/mere/utils: first FORCE
+	@test -d $(INSTALL_ROOT)/usr/local/include/mere/utils || mkdir -p $(INSTALL_ROOT)/usr/local/include/mere/utils
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-utils-lib/src/mereutils.h $(INSTALL_ROOT)/usr/local/include/mere/utils/mereutils.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-utils-lib/src/mereutilsglobal.h $(INSTALL_ROOT)/usr/local/include/mere/utils/mereutilsglobal.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-utils-lib/src/meresignal.h $(INSTALL_ROOT)/usr/local/include/mere/utils/meresignal.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-utils-lib/src/merestringutils.h $(INSTALL_ROOT)/usr/local/include/mere/utils/merestringutils.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-utils-lib/src/mereprocessutils.h $(INSTALL_ROOT)/usr/local/include/mere/utils/mereprocessutils.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-utils-lib/src/merefileutils.h $(INSTALL_ROOT)/usr/local/include/mere/utils/merefileutils.h
 
-uninstall: uninstall_target  FORCE
+uninstall_headers_/usr/local/include/mere/utils: FORCE
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/utils/merefileutils.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/utils/mereprocessutils.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/utils/merestringutils.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/utils/meresignal.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/utils/mereutilsglobal.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/utils/mereutils.h
+	-$(DEL_DIR) $(INSTALL_ROOT)/usr/local/include/mere/utils/ 
+
+
+install: install_target install_headers_/usr/local/include/mere/utils  FORCE
+
+uninstall: uninstall_target uninstall_headers_/usr/local/include/mere/utils  FORCE
 
 FORCE:
 
