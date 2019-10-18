@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui concurrent
+QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = mere-widgets
@@ -19,6 +19,7 @@ SOURCES += \
     src/merelabel.cpp \
     src/mereclickdetector.cpp \
     src/mereshadowwidget.cpp \
+    src/merewinheader.cpp
 
 HEADERS += \
     src/merewidgetresizer.h \
@@ -28,6 +29,7 @@ HEADERS += \
     src/merepopupmenu.h \
     src/mereclickdetector.h \
     src/mereshadowwidget.h \
+    src/merewinheader.h
 
 
 LIBS += -lX11
@@ -44,4 +46,15 @@ QMAKE_POST_LINK += $$QMAKE_COPY $$quote($$PWD/$$HEADERS) $$quote($$INCDIR) $$esc
 unix {
     target.path = /usr/local/lib
     INSTALLS += target
+
+    INSTALL_PREFIX = /usr/local/include/mere/widgets
+    for(header, HEADERS) {
+        sdir = $${dirname(header)}
+        sdir = $$replace(sdir, "src", "")
+        path = $${INSTALL_PREFIX}$${sdir}
+
+        eval(headers_$${path}.files += $$header)
+        eval(headers_$${path}.path = $$path)
+        eval(INSTALLS *= headers_$${path})
+    }
 }

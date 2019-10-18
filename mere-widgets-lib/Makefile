@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = clang
 CXX           = clang++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DMERE_WIDGETS_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CONCURRENT_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DMERE_WIDGETS_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -Wall -W -pthread -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -Wall -W -pthread -fPIC $(DEFINES)
-INCPATH       = -I. -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtConcurrent -I/usr/local/include/qt5/QtCore -I. -I/usr/local/include/libdrm -I/usr/local/include -I/usr/local/lib/qt5/mkspecs/freebsd-clang
+INCPATH       = -I. -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtCore -I. -I/usr/local/include/libdrm -I/usr/local/include -I/usr/local/lib/qt5/mkspecs/freebsd-clang
 QMAKE         = /usr/local/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = mere-widgets1.0.0
 DISTDIR = /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/.tmp/mere-widgets1.0.0
 LINK          = clang++
 LFLAGS        = -pthread -Wl,-rpath,/usr/local/lib/qt5 -shared -Wl,-soname,libmere-widgets.so.1
-LIBS          = $(SUBLIBS) -L/usr/local/lib -lX11 -L/usr/local/lib/qt5 -lQt5Widgets -lQt5Gui -lQt5Concurrent -lQt5Core -lkvm -lprocstat /usr/local/lib/libGL.so   
+LIBS          = $(SUBLIBS) -L/usr/local/lib -lX11 -L/usr/local/lib/qt5 -lQt5Widgets -lQt5Gui -lQt5Core -lkvm -lprocstat /usr/local/lib/libGL.so   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -57,26 +57,30 @@ SOURCES       = src/merewidgetresizer.cpp \
 		src/mereballonwidget.cpp \
 		src/merelabel.cpp \
 		src/mereclickdetector.cpp \
-		src/mereshadowwidget.cpp moc_merewidgetresizer.cpp \
+		src/mereshadowwidget.cpp \
+		src/merewinheader.cpp moc_merewidgetresizer.cpp \
 		moc_merepushmenu.cpp \
 		moc_mereballonwidget.cpp \
 		moc_merelabel.cpp \
 		moc_merepopupmenu.cpp \
 		moc_mereclickdetector.cpp \
-		moc_mereshadowwidget.cpp
+		moc_mereshadowwidget.cpp \
+		moc_merewinheader.cpp
 OBJECTS       = merewidgetresizer.o \
 		merepushmenu.o \
 		mereballonwidget.o \
 		merelabel.o \
 		mereclickdetector.o \
 		mereshadowwidget.o \
+		merewinheader.o \
 		moc_merewidgetresizer.o \
 		moc_merepushmenu.o \
 		moc_mereballonwidget.o \
 		moc_merelabel.o \
 		moc_merepopupmenu.o \
 		moc_mereclickdetector.o \
-		moc_mereshadowwidget.o
+		moc_mereshadowwidget.o \
+		moc_merewinheader.o
 DIST          = /usr/local/lib/qt5/mkspecs/features/spec_pre.prf \
 		/usr/local/lib/qt5/mkspecs/common/unix.conf \
 		/usr/local/lib/qt5/mkspecs/common/bsd/bsd.conf \
@@ -178,7 +182,7 @@ DIST          = /usr/local/lib/qt5/mkspecs/features/spec_pre.prf \
 		/usr/local/lib/qt5/mkspecs/features/qt_config.prf \
 		/usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf \
 		/usr/local/lib/qt5/mkspecs/features/spec_post.prf \
-		../.qmake.stash \
+		.qmake.stash \
 		/usr/local/lib/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/local/lib/qt5/mkspecs/features/toolchain.prf \
 		/usr/local/lib/qt5/mkspecs/features/default_pre.prf \
@@ -203,12 +207,14 @@ DIST          = /usr/local/lib/qt5/mkspecs/features/spec_pre.prf \
 		src/merelabel.h \
 		src/merepopupmenu.h \
 		src/mereclickdetector.h \
-		src/mereshadowwidget.h src/merewidgetresizer.cpp \
+		src/mereshadowwidget.h \
+		src/merewinheader.h src/merewidgetresizer.cpp \
 		src/merepushmenu.cpp \
 		src/mereballonwidget.cpp \
 		src/merelabel.cpp \
 		src/mereclickdetector.cpp \
-		src/mereshadowwidget.cpp
+		src/mereshadowwidget.cpp \
+		src/merewinheader.cpp
 QMAKE_TARGET  = mere-widgets
 DESTDIR       = ../lib/
 TARGET        = libmere-widgets.so.1.0.0
@@ -237,7 +243,7 @@ first: all
 	-$(MOVE) $(TARGET0) ../lib/$(TARGET0)
 	-$(MOVE) $(TARGET1) ../lib/$(TARGET1)
 	-$(MOVE) $(TARGET2) ../lib/$(TARGET2)
-	cp -f /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/merewidgetresizer.h src/merepushmenu.h src/mereballonwidget.h src/merelabel.h src/merepopupmenu.h src/mereclickdetector.h src/mereshadowwidget.h /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/../include 
+	cp -f /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/merewidgetresizer.h src/merepushmenu.h src/mereballonwidget.h src/merelabel.h src/merepopupmenu.h src/mereclickdetector.h src/mereshadowwidget.h src/merewinheader.h /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/../include 
 	
 
 
@@ -247,7 +253,7 @@ staticlib: ../lib/libmere-widgets.a
 ../lib/libmere-widgets.a:  $(OBJECTS) $(OBJCOMP) 
 	-$(DEL_FILE) $(TARGETA) 
 	$(AR) $(TARGETA) $(OBJECTS)
-	cp -f /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/merewidgetresizer.h src/merepushmenu.h src/mereballonwidget.h src/merelabel.h src/merepopupmenu.h src/mereclickdetector.h src/mereshadowwidget.h /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/../include 
+	cp -f /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/merewidgetresizer.h src/merepushmenu.h src/mereballonwidget.h src/merelabel.h src/merepopupmenu.h src/mereclickdetector.h src/mereshadowwidget.h src/merewinheader.h /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/../include 
 	
 
 Makefile: mere-widgets-lib.pro /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf /usr/local/lib/qt5/mkspecs/features/spec_pre.prf \
@@ -351,7 +357,7 @@ Makefile: mere-widgets-lib.pro /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.co
 		/usr/local/lib/qt5/mkspecs/features/qt_config.prf \
 		/usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf \
 		/usr/local/lib/qt5/mkspecs/features/spec_post.prf \
-		../.qmake.stash \
+		.qmake.stash \
 		/usr/local/lib/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/local/lib/qt5/mkspecs/features/toolchain.prf \
 		/usr/local/lib/qt5/mkspecs/features/default_pre.prf \
@@ -373,7 +379,6 @@ Makefile: mere-widgets-lib.pro /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.co
 		mere-widgets-lib.pro \
 		/usr/local/lib/qt5/libQt5Widgets.prl \
 		/usr/local/lib/qt5/libQt5Gui.prl \
-		/usr/local/lib/qt5/libQt5Concurrent.prl \
 		/usr/local/lib/qt5/libQt5Core.prl
 	$(QMAKE) -o Makefile mere-widgets-lib.pro
 /usr/local/lib/qt5/mkspecs/features/spec_pre.prf:
@@ -477,7 +482,7 @@ Makefile: mere-widgets-lib.pro /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.co
 /usr/local/lib/qt5/mkspecs/features/qt_config.prf:
 /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf:
 /usr/local/lib/qt5/mkspecs/features/spec_post.prf:
-../.qmake.stash:
+.qmake.stash:
 /usr/local/lib/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/local/lib/qt5/mkspecs/features/toolchain.prf:
 /usr/local/lib/qt5/mkspecs/features/default_pre.prf:
@@ -499,7 +504,6 @@ Makefile: mere-widgets-lib.pro /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.co
 mere-widgets-lib.pro:
 /usr/local/lib/qt5/libQt5Widgets.prl:
 /usr/local/lib/qt5/libQt5Gui.prl:
-/usr/local/lib/qt5/libQt5Concurrent.prl:
 /usr/local/lib/qt5/libQt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile mere-widgets-lib.pro
@@ -516,8 +520,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/local/lib/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents src/merewidgetresizer.h src/merepushmenu.h src/mereballonwidget.h src/merelabel.h src/merepopupmenu.h src/mereclickdetector.h src/mereshadowwidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents src/merewidgetresizer.cpp src/merepushmenu.cpp src/mereballonwidget.cpp src/merelabel.cpp src/mereclickdetector.cpp src/mereshadowwidget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/merewidgetresizer.h src/merepushmenu.h src/mereballonwidget.h src/merelabel.h src/merepopupmenu.h src/mereclickdetector.h src/mereshadowwidget.h src/merewinheader.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/merewidgetresizer.cpp src/merepushmenu.cpp src/mereballonwidget.cpp src/merelabel.cpp src/mereclickdetector.cpp src/mereshadowwidget.cpp src/merewinheader.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -528,6 +532,7 @@ clean: compiler_clean
 distclean: clean 
 	-$(DEL_FILE) ../lib/$(TARGET) 
 	-$(DEL_FILE) ../lib/$(TARGET0) ../lib/$(TARGET1) ../lib/$(TARGET2) $(TARGETA)
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -549,9 +554,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/local/lib/qt5/mkspecs/features/data/dummy.cpp
 	clang++ -pipe -O2 -Wall -W -dM -E -o moc_predefs.h /usr/local/lib/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_merewidgetresizer.cpp moc_merepushmenu.cpp moc_mereballonwidget.cpp moc_merelabel.cpp moc_merepopupmenu.cpp moc_mereclickdetector.cpp moc_mereshadowwidget.cpp
+compiler_moc_header_make_all: moc_merewidgetresizer.cpp moc_merepushmenu.cpp moc_mereballonwidget.cpp moc_merelabel.cpp moc_merepopupmenu.cpp moc_mereclickdetector.cpp moc_mereshadowwidget.cpp moc_merewinheader.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_merewidgetresizer.cpp moc_merepushmenu.cpp moc_mereballonwidget.cpp moc_merelabel.cpp moc_merepopupmenu.cpp moc_mereclickdetector.cpp moc_mereshadowwidget.cpp
+	-$(DEL_FILE) moc_merewidgetresizer.cpp moc_merepushmenu.cpp moc_mereballonwidget.cpp moc_merelabel.cpp moc_merepopupmenu.cpp moc_mereclickdetector.cpp moc_mereshadowwidget.cpp moc_merewinheader.cpp
 moc_merewidgetresizer.cpp: src/merewidgetresizer.h \
 		/usr/local/include/qt5/QtCore/QDebug \
 		/usr/local/include/qt5/QtCore/qdebug.h \
@@ -561,11 +566,11 @@ moc_merewidgetresizer.cpp: src/merewidgetresizer.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -673,7 +678,7 @@ moc_merewidgetresizer.cpp: src/merewidgetresizer.h \
 		/usr/local/include/qt5/QtGui/QPaintEvent \
 		moc_predefs.h \
 		/usr/local/lib/qt5/bin/moc
-	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtConcurrent -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/merewidgetresizer.h -o moc_merewidgetresizer.cpp
+	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/merewidgetresizer.h -o moc_merewidgetresizer.cpp
 
 moc_merepushmenu.cpp: src/merepushmenu.h \
 		/usr/local/include/qt5/QtCore/QDebug \
@@ -684,11 +689,11 @@ moc_merepushmenu.cpp: src/merepushmenu.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -795,7 +800,7 @@ moc_merepushmenu.cpp: src/merepushmenu.h \
 		/usr/local/include/qt5/QtWidgets/qactiongroup.h \
 		moc_predefs.h \
 		/usr/local/lib/qt5/bin/moc
-	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtConcurrent -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/merepushmenu.h -o moc_merepushmenu.cpp
+	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/merepushmenu.h -o moc_merepushmenu.cpp
 
 moc_mereballonwidget.cpp: src/mereballonwidget.h \
 		/usr/local/include/qt5/QtGui/QShowEvent \
@@ -806,11 +811,11 @@ moc_mereballonwidget.cpp: src/mereballonwidget.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -915,7 +920,7 @@ moc_mereballonwidget.cpp: src/mereballonwidget.h \
 		/usr/local/include/qt5/QtGui/qcursor.h \
 		moc_predefs.h \
 		/usr/local/lib/qt5/bin/moc
-	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtConcurrent -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/mereballonwidget.h -o moc_mereballonwidget.cpp
+	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/mereballonwidget.h -o moc_mereballonwidget.cpp
 
 moc_merelabel.cpp: src/merelabel.h \
 		/usr/local/include/qt5/QtCore/QDebug \
@@ -926,11 +931,11 @@ moc_merelabel.cpp: src/merelabel.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -1035,7 +1040,7 @@ moc_merelabel.cpp: src/merelabel.h \
 		/usr/local/include/qt5/QtGui/qtouchdevice.h \
 		moc_predefs.h \
 		/usr/local/lib/qt5/bin/moc
-	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtConcurrent -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/merelabel.h -o moc_merelabel.cpp
+	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/merelabel.h -o moc_merelabel.cpp
 
 moc_merepopupmenu.cpp: src/merepopupmenu.h \
 		/usr/local/include/qt5/QtWidgets/QWidget \
@@ -1047,11 +1052,11 @@ moc_merepopupmenu.cpp: src/merepopupmenu.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -1152,7 +1157,7 @@ moc_merepopupmenu.cpp: src/merepopupmenu.h \
 		/usr/local/include/qt5/QtGui/qtouchdevice.h \
 		moc_predefs.h \
 		/usr/local/lib/qt5/bin/moc
-	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtConcurrent -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/merepopupmenu.h -o moc_merepopupmenu.cpp
+	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/merepopupmenu.h -o moc_merepopupmenu.cpp
 
 moc_mereclickdetector.cpp: src/mereclickdetector.h \
 		/usr/local/include/qt5/QtCore/QDebug \
@@ -1163,11 +1168,11 @@ moc_mereclickdetector.cpp: src/mereclickdetector.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -1272,7 +1277,7 @@ moc_mereclickdetector.cpp: src/mereclickdetector.h \
 		/usr/local/include/qt5/QtCore/QObject \
 		moc_predefs.h \
 		/usr/local/lib/qt5/bin/moc
-	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtConcurrent -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/mereclickdetector.h -o moc_mereclickdetector.cpp
+	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/mereclickdetector.h -o moc_mereclickdetector.cpp
 
 moc_mereshadowwidget.cpp: src/mereshadowwidget.h \
 		src/merewidgetresizer.h \
@@ -1284,11 +1289,11 @@ moc_mereshadowwidget.cpp: src/mereshadowwidget.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -1396,7 +1401,126 @@ moc_mereshadowwidget.cpp: src/mereshadowwidget.h \
 		/usr/local/include/qt5/QtGui/QPaintEvent \
 		moc_predefs.h \
 		/usr/local/lib/qt5/bin/moc
-	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtConcurrent -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/mereshadowwidget.h -o moc_mereshadowwidget.cpp
+	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/mereshadowwidget.h -o moc_mereshadowwidget.cpp
+
+moc_merewinheader.cpp: src/merewinheader.h \
+		/usr/local/include/qt5/QtCore/QPoint \
+		/usr/local/include/qt5/QtCore/qpoint.h \
+		/usr/local/include/qt5/QtCore/qnamespace.h \
+		/usr/local/include/qt5/QtCore/qglobal.h \
+		/usr/local/include/qt5/QtCore/qconfig-bootstrapped.h \
+		/usr/local/include/qt5/QtCore/qconfig.h \
+		/usr/local/include/qt5/QtCore/qconfig-modules.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
+		/usr/local/include/qt5/QtCore/qtcore-config.h \
+		/usr/local/include/qt5/QtCore/qsystemdetection.h \
+		/usr/local/include/qt5/QtCore/qprocessordetection.h \
+		/usr/local/include/qt5/QtCore/qcompilerdetection.h \
+		/usr/local/include/qt5/QtCore/qtypeinfo.h \
+		/usr/local/include/qt5/QtCore/qsysinfo.h \
+		/usr/local/include/qt5/QtCore/qlogging.h \
+		/usr/local/include/qt5/QtCore/qflags.h \
+		/usr/local/include/qt5/QtCore/qatomic.h \
+		/usr/local/include/qt5/QtCore/qbasicatomic.h \
+		/usr/local/include/qt5/QtCore/qatomic_bootstrap.h \
+		/usr/local/include/qt5/QtCore/qgenericatomic.h \
+		/usr/local/include/qt5/QtCore/qatomic_cxx11.h \
+		/usr/local/include/qt5/QtCore/qatomic_msvc.h \
+		/usr/local/include/qt5/QtCore/qglobalstatic.h \
+		/usr/local/include/qt5/QtCore/qmutex.h \
+		/usr/local/include/qt5/QtCore/qnumeric.h \
+		/usr/local/include/qt5/QtCore/qversiontagging.h \
+		/usr/local/include/qt5/QtGui/QMouseEvent \
+		/usr/local/include/qt5/QtGui/qevent.h \
+		/usr/local/include/qt5/QtGui/qtguiglobal.h \
+		/usr/local/include/qt5/QtGui/qtgui-config.h \
+		/usr/local/include/qt5/QtGui/qwindowdefs.h \
+		/usr/local/include/qt5/QtCore/qobjectdefs.h \
+		/usr/local/include/qt5/QtCore/qobjectdefs_impl.h \
+		/usr/local/include/qt5/QtGui/qwindowdefs_win.h \
+		/usr/local/include/qt5/QtGui/qregion.h \
+		/usr/local/include/qt5/QtCore/qrect.h \
+		/usr/local/include/qt5/QtCore/qmargins.h \
+		/usr/local/include/qt5/QtCore/qsize.h \
+		/usr/local/include/qt5/QtCore/qdatastream.h \
+		/usr/local/include/qt5/QtCore/qscopedpointer.h \
+		/usr/local/include/qt5/QtCore/qiodevice.h \
+		/usr/local/include/qt5/QtCore/qobject.h \
+		/usr/local/include/qt5/QtCore/qstring.h \
+		/usr/local/include/qt5/QtCore/qchar.h \
+		/usr/local/include/qt5/QtCore/qbytearray.h \
+		/usr/local/include/qt5/QtCore/qrefcount.h \
+		/usr/local/include/qt5/QtCore/qarraydata.h \
+		/usr/local/include/qt5/QtCore/qstringliteral.h \
+		/usr/local/include/qt5/QtCore/qstringalgorithms.h \
+		/usr/local/include/qt5/QtCore/qstringview.h \
+		/usr/local/include/qt5/QtCore/qstringbuilder.h \
+		/usr/local/include/qt5/QtCore/qlist.h \
+		/usr/local/include/qt5/QtCore/qalgorithms.h \
+		/usr/local/include/qt5/QtCore/qiterator.h \
+		/usr/local/include/qt5/QtCore/qhashfunctions.h \
+		/usr/local/include/qt5/QtCore/qpair.h \
+		/usr/local/include/qt5/QtCore/qbytearraylist.h \
+		/usr/local/include/qt5/QtCore/qstringlist.h \
+		/usr/local/include/qt5/QtCore/qregexp.h \
+		/usr/local/include/qt5/QtCore/qstringmatcher.h \
+		/usr/local/include/qt5/QtCore/qcoreevent.h \
+		/usr/local/include/qt5/QtCore/qmetatype.h \
+		/usr/local/include/qt5/QtCore/qvarlengtharray.h \
+		/usr/local/include/qt5/QtCore/qcontainerfwd.h \
+		/usr/local/include/qt5/QtCore/qobject_impl.h \
+		/usr/local/include/qt5/QtGui/qkeysequence.h \
+		/usr/local/include/qt5/QtCore/qvariant.h \
+		/usr/local/include/qt5/QtCore/qmap.h \
+		/usr/local/include/qt5/QtCore/qdebug.h \
+		/usr/local/include/qt5/QtCore/qhash.h \
+		/usr/local/include/qt5/QtCore/qtextstream.h \
+		/usr/local/include/qt5/QtCore/qlocale.h \
+		/usr/local/include/qt5/QtCore/qshareddata.h \
+		/usr/local/include/qt5/QtCore/qvector.h \
+		/usr/local/include/qt5/QtCore/qset.h \
+		/usr/local/include/qt5/QtCore/qcontiguouscache.h \
+		/usr/local/include/qt5/QtCore/qsharedpointer.h \
+		/usr/local/include/qt5/QtCore/qsharedpointer_impl.h \
+		/usr/local/include/qt5/QtCore/qurl.h \
+		/usr/local/include/qt5/QtCore/qurlquery.h \
+		/usr/local/include/qt5/QtCore/qfile.h \
+		/usr/local/include/qt5/QtCore/qfiledevice.h \
+		/usr/local/include/qt5/QtGui/qvector2d.h \
+		/usr/local/include/qt5/QtGui/qtouchdevice.h \
+		/usr/local/include/qt5/QtWidgets/QWidget \
+		/usr/local/include/qt5/QtWidgets/qwidget.h \
+		/usr/local/include/qt5/QtWidgets/qtwidgetsglobal.h \
+		/usr/local/include/qt5/QtWidgets/qtwidgets-config.h \
+		/usr/local/include/qt5/QtGui/qpaintdevice.h \
+		/usr/local/include/qt5/QtGui/qpalette.h \
+		/usr/local/include/qt5/QtGui/qcolor.h \
+		/usr/local/include/qt5/QtGui/qrgb.h \
+		/usr/local/include/qt5/QtGui/qrgba64.h \
+		/usr/local/include/qt5/QtGui/qbrush.h \
+		/usr/local/include/qt5/QtGui/qmatrix.h \
+		/usr/local/include/qt5/QtGui/qpolygon.h \
+		/usr/local/include/qt5/QtCore/qline.h \
+		/usr/local/include/qt5/QtGui/qtransform.h \
+		/usr/local/include/qt5/QtGui/qpainterpath.h \
+		/usr/local/include/qt5/QtGui/qimage.h \
+		/usr/local/include/qt5/QtGui/qpixelformat.h \
+		/usr/local/include/qt5/QtGui/qpixmap.h \
+		/usr/local/include/qt5/QtGui/qfont.h \
+		/usr/local/include/qt5/QtGui/qfontmetrics.h \
+		/usr/local/include/qt5/QtGui/qfontinfo.h \
+		/usr/local/include/qt5/QtWidgets/qsizepolicy.h \
+		/usr/local/include/qt5/QtGui/qcursor.h \
+		moc_predefs.h \
+		/usr/local/lib/qt5/bin/moc
+	/usr/local/lib/qt5/bin/moc $(DEFINES) --include /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/moc_predefs.h -I/usr/local/lib/qt5/mkspecs/freebsd-clang -I/usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib -I/usr/local/include/qt5 -I/usr/local/include/qt5/QtWidgets -I/usr/local/include/qt5/QtGui -I/usr/local/include/qt5/QtCore -I/usr/include/c++/v1 -I/usr/lib/clang/8.0.0/include -I/usr/include src/merewinheader.h -o moc_merewinheader.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1423,11 +1547,11 @@ merewidgetresizer.o: src/merewidgetresizer.cpp src/merewidgetresizer.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -1548,11 +1672,11 @@ merepushmenu.o: src/merepushmenu.cpp src/merepushmenu.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -1672,11 +1796,11 @@ mereballonwidget.o: src/mereballonwidget.cpp src/mereballonwidget.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -1802,11 +1926,11 @@ merelabel.o: src/merelabel.cpp src/merelabel.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -1920,11 +2044,11 @@ mereclickdetector.o: src/mereclickdetector.cpp src/mereclickdetector.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -2039,11 +2163,11 @@ mereshadowwidget.o: src/mereshadowwidget.cpp src/mereshadowwidget.h \
 		/usr/local/include/qt5/QtCore/qconfig.h \
 		/usr/local/include/qt5/QtCore/qconfig-modules.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
-		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
 		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
 		/usr/local/include/qt5/QtCore/qtcore-config.h \
@@ -2160,6 +2284,123 @@ mereshadowwidget.o: src/mereshadowwidget.cpp src/mereshadowwidget.h \
 		/usr/local/include/qt5/QtWidgets/qgraphicseffect.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mereshadowwidget.o src/mereshadowwidget.cpp
 
+merewinheader.o: src/merewinheader.cpp src/merewinheader.h \
+		/usr/local/include/qt5/QtCore/QPoint \
+		/usr/local/include/qt5/QtCore/qpoint.h \
+		/usr/local/include/qt5/QtCore/qnamespace.h \
+		/usr/local/include/qt5/QtCore/qglobal.h \
+		/usr/local/include/qt5/QtCore/qconfig-bootstrapped.h \
+		/usr/local/include/qt5/QtCore/qconfig.h \
+		/usr/local/include/qt5/QtCore/qconfig-modules.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-core.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-concurrent.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-dbus.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-network.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-gui.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-widgets.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-declarative.h \
+		/usr/local/include/qt5/QtCore/modules/qconfig-printsupport.h \
+		/usr/local/include/qt5/QtCore/qtcore-config.h \
+		/usr/local/include/qt5/QtCore/qsystemdetection.h \
+		/usr/local/include/qt5/QtCore/qprocessordetection.h \
+		/usr/local/include/qt5/QtCore/qcompilerdetection.h \
+		/usr/local/include/qt5/QtCore/qtypeinfo.h \
+		/usr/local/include/qt5/QtCore/qsysinfo.h \
+		/usr/local/include/qt5/QtCore/qlogging.h \
+		/usr/local/include/qt5/QtCore/qflags.h \
+		/usr/local/include/qt5/QtCore/qatomic.h \
+		/usr/local/include/qt5/QtCore/qbasicatomic.h \
+		/usr/local/include/qt5/QtCore/qatomic_bootstrap.h \
+		/usr/local/include/qt5/QtCore/qgenericatomic.h \
+		/usr/local/include/qt5/QtCore/qatomic_cxx11.h \
+		/usr/local/include/qt5/QtCore/qatomic_msvc.h \
+		/usr/local/include/qt5/QtCore/qglobalstatic.h \
+		/usr/local/include/qt5/QtCore/qmutex.h \
+		/usr/local/include/qt5/QtCore/qnumeric.h \
+		/usr/local/include/qt5/QtCore/qversiontagging.h \
+		/usr/local/include/qt5/QtGui/QMouseEvent \
+		/usr/local/include/qt5/QtGui/qevent.h \
+		/usr/local/include/qt5/QtGui/qtguiglobal.h \
+		/usr/local/include/qt5/QtGui/qtgui-config.h \
+		/usr/local/include/qt5/QtGui/qwindowdefs.h \
+		/usr/local/include/qt5/QtCore/qobjectdefs.h \
+		/usr/local/include/qt5/QtCore/qobjectdefs_impl.h \
+		/usr/local/include/qt5/QtGui/qwindowdefs_win.h \
+		/usr/local/include/qt5/QtGui/qregion.h \
+		/usr/local/include/qt5/QtCore/qrect.h \
+		/usr/local/include/qt5/QtCore/qmargins.h \
+		/usr/local/include/qt5/QtCore/qsize.h \
+		/usr/local/include/qt5/QtCore/qdatastream.h \
+		/usr/local/include/qt5/QtCore/qscopedpointer.h \
+		/usr/local/include/qt5/QtCore/qiodevice.h \
+		/usr/local/include/qt5/QtCore/qobject.h \
+		/usr/local/include/qt5/QtCore/qstring.h \
+		/usr/local/include/qt5/QtCore/qchar.h \
+		/usr/local/include/qt5/QtCore/qbytearray.h \
+		/usr/local/include/qt5/QtCore/qrefcount.h \
+		/usr/local/include/qt5/QtCore/qarraydata.h \
+		/usr/local/include/qt5/QtCore/qstringliteral.h \
+		/usr/local/include/qt5/QtCore/qstringalgorithms.h \
+		/usr/local/include/qt5/QtCore/qstringview.h \
+		/usr/local/include/qt5/QtCore/qstringbuilder.h \
+		/usr/local/include/qt5/QtCore/qlist.h \
+		/usr/local/include/qt5/QtCore/qalgorithms.h \
+		/usr/local/include/qt5/QtCore/qiterator.h \
+		/usr/local/include/qt5/QtCore/qhashfunctions.h \
+		/usr/local/include/qt5/QtCore/qpair.h \
+		/usr/local/include/qt5/QtCore/qbytearraylist.h \
+		/usr/local/include/qt5/QtCore/qstringlist.h \
+		/usr/local/include/qt5/QtCore/qregexp.h \
+		/usr/local/include/qt5/QtCore/qstringmatcher.h \
+		/usr/local/include/qt5/QtCore/qcoreevent.h \
+		/usr/local/include/qt5/QtCore/qmetatype.h \
+		/usr/local/include/qt5/QtCore/qvarlengtharray.h \
+		/usr/local/include/qt5/QtCore/qcontainerfwd.h \
+		/usr/local/include/qt5/QtCore/qobject_impl.h \
+		/usr/local/include/qt5/QtGui/qkeysequence.h \
+		/usr/local/include/qt5/QtCore/qvariant.h \
+		/usr/local/include/qt5/QtCore/qmap.h \
+		/usr/local/include/qt5/QtCore/qdebug.h \
+		/usr/local/include/qt5/QtCore/qhash.h \
+		/usr/local/include/qt5/QtCore/qtextstream.h \
+		/usr/local/include/qt5/QtCore/qlocale.h \
+		/usr/local/include/qt5/QtCore/qshareddata.h \
+		/usr/local/include/qt5/QtCore/qvector.h \
+		/usr/local/include/qt5/QtCore/qset.h \
+		/usr/local/include/qt5/QtCore/qcontiguouscache.h \
+		/usr/local/include/qt5/QtCore/qsharedpointer.h \
+		/usr/local/include/qt5/QtCore/qsharedpointer_impl.h \
+		/usr/local/include/qt5/QtCore/qurl.h \
+		/usr/local/include/qt5/QtCore/qurlquery.h \
+		/usr/local/include/qt5/QtCore/qfile.h \
+		/usr/local/include/qt5/QtCore/qfiledevice.h \
+		/usr/local/include/qt5/QtGui/qvector2d.h \
+		/usr/local/include/qt5/QtGui/qtouchdevice.h \
+		/usr/local/include/qt5/QtWidgets/QWidget \
+		/usr/local/include/qt5/QtWidgets/qwidget.h \
+		/usr/local/include/qt5/QtWidgets/qtwidgetsglobal.h \
+		/usr/local/include/qt5/QtWidgets/qtwidgets-config.h \
+		/usr/local/include/qt5/QtGui/qpaintdevice.h \
+		/usr/local/include/qt5/QtGui/qpalette.h \
+		/usr/local/include/qt5/QtGui/qcolor.h \
+		/usr/local/include/qt5/QtGui/qrgb.h \
+		/usr/local/include/qt5/QtGui/qrgba64.h \
+		/usr/local/include/qt5/QtGui/qbrush.h \
+		/usr/local/include/qt5/QtGui/qmatrix.h \
+		/usr/local/include/qt5/QtGui/qpolygon.h \
+		/usr/local/include/qt5/QtCore/qline.h \
+		/usr/local/include/qt5/QtGui/qtransform.h \
+		/usr/local/include/qt5/QtGui/qpainterpath.h \
+		/usr/local/include/qt5/QtGui/qimage.h \
+		/usr/local/include/qt5/QtGui/qpixelformat.h \
+		/usr/local/include/qt5/QtGui/qpixmap.h \
+		/usr/local/include/qt5/QtGui/qfont.h \
+		/usr/local/include/qt5/QtGui/qfontmetrics.h \
+		/usr/local/include/qt5/QtGui/qfontinfo.h \
+		/usr/local/include/qt5/QtWidgets/qsizepolicy.h \
+		/usr/local/include/qt5/QtGui/qcursor.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o merewinheader.o src/merewinheader.cpp
+
 moc_merewidgetresizer.o: moc_merewidgetresizer.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_merewidgetresizer.o moc_merewidgetresizer.cpp
 
@@ -2181,6 +2422,9 @@ moc_mereclickdetector.o: moc_mereclickdetector.cpp
 moc_mereshadowwidget.o: moc_mereshadowwidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mereshadowwidget.o moc_mereshadowwidget.cpp
 
+moc_merewinheader.o: moc_merewinheader.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_merewinheader.o moc_merewinheader.cpp
+
 ####### Install
 
 install_target: first FORCE
@@ -2199,9 +2443,32 @@ uninstall_target: FORCE
 	-$(DEL_DIR) $(INSTALL_ROOT)/usr/local/lib/ 
 
 
-install: install_target  FORCE
+install_headers_/usr/local/include/mere/widgets: first FORCE
+	@test -d $(INSTALL_ROOT)/usr/local/include/mere/widgets || mkdir -p $(INSTALL_ROOT)/usr/local/include/mere/widgets
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/merewidgetresizer.h $(INSTALL_ROOT)/usr/local/include/mere/widgets/merewidgetresizer.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/merepushmenu.h $(INSTALL_ROOT)/usr/local/include/mere/widgets/merepushmenu.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/mereballonwidget.h $(INSTALL_ROOT)/usr/local/include/mere/widgets/mereballonwidget.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/merelabel.h $(INSTALL_ROOT)/usr/local/include/mere/widgets/merelabel.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/merepopupmenu.h $(INSTALL_ROOT)/usr/local/include/mere/widgets/merepopupmenu.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/mereclickdetector.h $(INSTALL_ROOT)/usr/local/include/mere/widgets/mereclickdetector.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/mereshadowwidget.h $(INSTALL_ROOT)/usr/local/include/mere/widgets/mereshadowwidget.h
+	-$(QINSTALL) /usr/home/iklash/workspace/merelab/mere-utils/mere-widgets-lib/src/merewinheader.h $(INSTALL_ROOT)/usr/local/include/mere/widgets/merewinheader.h
 
-uninstall: uninstall_target  FORCE
+uninstall_headers_/usr/local/include/mere/widgets: FORCE
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/widgets/merewinheader.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/widgets/mereshadowwidget.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/widgets/mereclickdetector.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/widgets/merepopupmenu.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/widgets/merelabel.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/widgets/mereballonwidget.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/widgets/merepushmenu.h
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/mere/widgets/merewidgetresizer.h
+	-$(DEL_DIR) $(INSTALL_ROOT)/usr/local/include/mere/widgets/ 
+
+
+install: install_target install_headers_/usr/local/include/mere/widgets  FORCE
+
+uninstall: uninstall_target uninstall_headers_/usr/local/include/mere/widgets  FORCE
 
 FORCE:
 
