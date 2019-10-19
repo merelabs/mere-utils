@@ -164,7 +164,6 @@ DIST          = /usr/local/lib/qt5/mkspecs/features/spec_pre.prf \
 		/usr/local/lib/qt5/mkspecs/features/qt_config.prf \
 		/usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf \
 		/usr/local/lib/qt5/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/usr/local/lib/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/local/lib/qt5/mkspecs/features/toolchain.prf \
 		/usr/local/lib/qt5/mkspecs/features/default_pre.prf \
@@ -333,7 +332,6 @@ Makefile: mere-utils-lib.pro /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf
 		/usr/local/lib/qt5/mkspecs/features/qt_config.prf \
 		/usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf \
 		/usr/local/lib/qt5/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/usr/local/lib/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/local/lib/qt5/mkspecs/features/toolchain.prf \
 		/usr/local/lib/qt5/mkspecs/features/default_pre.prf \
@@ -454,7 +452,6 @@ Makefile: mere-utils-lib.pro /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf
 /usr/local/lib/qt5/mkspecs/features/qt_config.prf:
 /usr/local/lib/qt5/mkspecs/freebsd-clang/qmake.conf:
 /usr/local/lib/qt5/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /usr/local/lib/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/local/lib/qt5/mkspecs/features/toolchain.prf:
 /usr/local/lib/qt5/mkspecs/features/default_pre.prf:

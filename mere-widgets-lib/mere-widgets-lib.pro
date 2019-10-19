@@ -13,6 +13,7 @@ TEMPLATE = lib
 DEFINES += QT_DEPRECATED_WARNINGS MERE_WIDGETS_LIB
 
 SOURCES += \
+    src/merestatusbar.cpp \
     src/merewidgetresizer.cpp \
     src/merepushmenu.cpp \
     src/mereballonwidget.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
     src/merewinheader.cpp
 
 HEADERS += \
+    src/merestatusbar.h \
     src/merewidgetresizer.h \
     src/merepushmenu.h \
     src/mereballonwidget.h \
