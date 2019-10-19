@@ -16,6 +16,8 @@ MereStatusBar::MereStatusBar(QWidget *parent)
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(9, 2, 9, 2);
     setLayout(layout);
+
+    initUI();
 }
 
 void MereStatusBar::initUI()
