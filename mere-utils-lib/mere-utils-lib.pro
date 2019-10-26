@@ -1,10 +1,4 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2018-06-05T19:35:50
-#
-#-------------------------------------------------
-
-QT       -= gui
+QT = core
 
 TARGET = mere-utils
 TEMPLATE = lib
@@ -32,8 +26,6 @@ LIBS += -lX11
 LIBDIR = $$PWD/../lib
 INCDIR = $$PWD/../include
 DESTDIR = \"$$LIBDIR\"
-
-QMAKE_POST_LINK += $$QMAKE_COPY $$quote($$PWD/$$HEADERS) $$quote($$INCDIR) $$escape_expand(\\n\\t)
 
 #
 # Install

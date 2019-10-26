@@ -1,12 +1,5 @@
 #include "merestringutils.h"
 
-#include <QString>
-
-MereStringUtils::MereStringUtils()
-{
-
-}
-
 bool MereStringUtils::isBlank(const QString& str)
 {
     return str.isNull() || str.isEmpty();

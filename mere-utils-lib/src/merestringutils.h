@@ -3,12 +3,12 @@
 
 #include "mereutilsglobal.h"
 
-class QString;
+#include <QString>
 
 class MERE_UTILS_LIBSPEC MereStringUtils
 {
 private:
-    MereStringUtils();
+    MereStringUtils(){}
 
 public:
     static bool isBlank(const QString& str);

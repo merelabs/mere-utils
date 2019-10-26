@@ -3,11 +3,8 @@
 
 #include "mereutilsglobal.h"
 
-class QProcess;
-
 class MERE_UTILS_LIBSPEC MereProcessUtils
 {
-public:
 
 };
 

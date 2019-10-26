@@ -6,7 +6,7 @@
 class MERE_UTILS_LIBSPEC MereFileUtils
 {
 private:
-    MereFileUtils();
+    MereFileUtils(){}
 
 public:
     static bool isExist(const QString &path);

@@ -5,11 +5,6 @@
 #include <QMimeDatabase>
 #include <QDebug>
 
-MereFileUtils::MereFileUtils()
-{
-
-}
-
 bool MereFileUtils::isExist(const QString &path)
 {
     if (MereStringUtils::isBlank(path))
