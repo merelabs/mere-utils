@@ -33,6 +33,8 @@ bool MereI18nUtils::apply(QTranslator *translator)
 //static
 bool MereI18nUtils::apply(QTranslator *translator, QLocale locale)
 {
+    QCoreApplication::removeTranslator(translator);
+
     QString path = i18nFile(locale);
     if (MereStringUtils::isBlank(path))
         return false;
