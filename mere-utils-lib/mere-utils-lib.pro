@@ -1,9 +1,14 @@
 QT = core
 
 TARGET = mere-utils
+VERSION = 0.0.1b
 TEMPLATE = lib
 
 DEFINES += QT_DEPRECATED_WARNINGS MERE_UTILS_LIB
+
+DEFINES += LIB_CODE=\\\"$$TARGET\\\"
+DEFINES += LIB_NAME=\\\"$$TARGET\\\"
+DEFINES += LIB_VERSION=\\\"$$VERSION\\\"
 
 CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
 
@@ -31,7 +36,7 @@ unix {
     target.path = /usr/local/lib
     INSTALLS += target
 
-    INSTALL_PREFIX = /usr/local/include/mere/utils
+    INSTALL_PREFIX = /usr/local/include/mere/mere-utils
     for(header, HEADERS) {
         sdir = $${dirname(header)}
         sdir = $$replace(sdir, "src", "")
