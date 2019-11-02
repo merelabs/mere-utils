@@ -5,9 +5,11 @@ TEMPLATE = lib
 
 DEFINES += QT_DEPRECATED_WARNINGS MERE_UTILS_LIB
 
+CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
+
 SOURCES += \
     src/merei18nutils.cpp \
-        src/mereutils.cpp \
+    src/mereutils.cpp \
     src/meresignal.cpp \
     src/merestringutils.cpp \
     src/mereprocessutils.cpp \
@@ -15,19 +17,12 @@ SOURCES += \
 
 HEADERS += \
     src/merei18nutils.h \
-        src/mereutils.h \
-        src/mereutilsglobal.h \
+    src/mereutils.h \
+    src/mereutilsglobal.h \
     src/meresignal.h \
     src/merestringutils.h \
     src/mereprocessutils.h \
     src/merefileutils.h
-
-
-LIBS += -lX11
-
-LIBDIR = $$PWD/../lib
-INCDIR = $$PWD/../include
-DESTDIR = \"$$LIBDIR\"
 
 #
 # Install
