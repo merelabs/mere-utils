@@ -1,0 +1,6 @@
+.qmake.stash
+Makefile
+lib/
+mere-utils.pro.user
+mere-utils.pro.user.*
+
