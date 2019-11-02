@@ -1,4 +1,4 @@
-QT = gui
+QT -= gui
 
 TARGET = mere-utils-tests
 TEMPLATE = app
