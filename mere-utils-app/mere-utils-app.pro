@@ -1,3 +1,5 @@
+include(../mere-utils-lib/mere-utils-lib.pri)
+
 QT       -= gui
 
 TARGET = mere-utils
@@ -7,13 +9,6 @@ SOURCES += \
         src/main.cpp \
 
 HEADERS += \
-
-
-DEPENDPATH += . ../lib
-INCLUDEPATH += ../include
-
-LIBS += -L$$PWD/../lib -lmere-utils
-LIBS += -lX11
 
 #
 # Install

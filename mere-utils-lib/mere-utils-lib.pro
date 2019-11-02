@@ -1,9 +1,16 @@
 QT = core
 
 TARGET = mere-utils
+VERSION = 0.0.1b
 TEMPLATE = lib
 
+CONFIG += shared
+
 DEFINES += QT_DEPRECATED_WARNINGS MERE_UTILS_LIB
+
+DEFINES += LIB_CODE=\\\"$$TARGET\\\"
+DEFINES += LIB_NAME=\\\"$$TARGET\\\"
+DEFINES += LIB_VERSION=\\\"$$VERSION\\\"
 
 CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
 
@@ -25,6 +32,8 @@ HEADERS += \
     src/merestringutils.h \
     src/mereprocessutils.h \
     src/merefileutils.h
+
+DESTDIR = $$PWD/../lib
 
 #
 # Install

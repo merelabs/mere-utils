@@ -1,5 +1,6 @@
 #ifndef MERESIGNAL_H
 #define MERESIGNAL_H
+
 #include "mereutilsglobal.h"
 
 #include <signal.h>

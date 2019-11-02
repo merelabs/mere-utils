@@ -1,6 +1,7 @@
 .qmake.stash
 *.o
 moc_*
+mere-utils
 Makefile
 lib/
 mere-utils.pro.user

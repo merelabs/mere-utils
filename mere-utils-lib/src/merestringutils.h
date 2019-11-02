@@ -3,8 +3,6 @@
 
 #include "mereutilsglobal.h"
 
-#include <QString>
-
 class MERE_UTILS_LIBSPEC MereStringUtils
 {
 private:
