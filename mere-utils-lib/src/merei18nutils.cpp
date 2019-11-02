@@ -1,4 +1,5 @@
 #include "merei18nutils.h"
+#include "mereapputils.h"
 #include "merestringutils.h"
 
 #include <QFileInfo>
@@ -78,6 +79,10 @@ QString MereI18nUtils::i18nFile(QLocale locale)
 QString MereI18nUtils::i18nPattern()
 {
     QString path = i18nPath();
+
+    // As lupdate creates .ts file using project file name and
+    // lrelease convert those files, we keep using pattern
+    // {project-file-name}_{local-lang_and/or_country}.qm
     QString pattern = path.append("/").append(qAppName()).append("_%1.qm");
 
     return pattern;
@@ -86,7 +91,12 @@ QString MereI18nUtils::i18nPattern()
 //static
 QString MereI18nUtils::i18nPath()
 {
-    return i18nMerePath().append("/").append(qAppName()).append("/").append("i18n");
+    QString base = MereAppUtils::AppCode();
+    if (MereStringUtils::isBlank(base))
+    {
+        base = qAppName().trimmed();
+    }
+    return i18nMerePath().append("/").append(base).append("/").append("i18n");
 }
 
 QString MereI18nUtils::i18nMerePath()
