@@ -10,12 +10,6 @@ SOURCES += \
 
 HEADERS += \
 
-#INCLUDEPATH += src
-#INCLUDEPATH += ../include
-#INCLUDEPATH += /usr/local/include
-
-#LIBS += -L$$PWD/../lib -lmere-utils
-
 #
 # Install
 #

@@ -5,7 +5,6 @@ VERSION = 0.0.1b
 TEMPLATE = lib
 
 CONFIG += shared
-#CONFIG += static
 
 DEFINES += QT_DEPRECATED_WARNINGS MERE_UTILS_LIB
 
@@ -32,11 +31,7 @@ HEADERS += \
     src/mereprocessutils.h \
     src/merefileutils.h
 
-
-LIBDIR = $$PWD/../lib
-INCDIR = $$PWD/../include
-DESTDIR += \"$$LIBDIR\"
-#DESTDIR += \"$$INCDIR\"
+DESTDIR = $$PWD/../lib
 
 #
 # Install
@@ -44,7 +39,6 @@ DESTDIR += \"$$LIBDIR\"
 unix {
     target.path = /usr/local/lib
     INSTALLS += target
-#    INSTALLS += $$DESTDIR
 
     INSTALL_PREFIX = /usr/local/include/mere/mere-utils
     for(header, HEADERS) {
