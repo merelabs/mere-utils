@@ -8,6 +8,7 @@ DEFINES += QT_DEPRECATED_WARNINGS MERE_UTILS_LIB
 CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
 
 SOURCES += \
+    src/mereapputils.cpp \
     src/merei18nutils.cpp \
     src/mereutils.cpp \
     src/meresignal.cpp \
@@ -16,6 +17,7 @@ SOURCES += \
     src/merefileutils.cpp
 
 HEADERS += \
+    src/mereapputils.h \
     src/merei18nutils.h \
     src/mereutils.h \
     src/mereutilsglobal.h \
@@ -31,7 +33,7 @@ unix {
     target.path = /usr/local/lib
     INSTALLS += target
 
-    INSTALL_PREFIX = /usr/local/include/mere/utils
+    INSTALL_PREFIX = /usr/local/include/mere/mere-utils
     for(header, HEADERS) {
         sdir = $${dirname(header)}
         sdir = $$replace(sdir, "src", "")
