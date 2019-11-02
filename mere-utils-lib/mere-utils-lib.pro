@@ -6,6 +6,7 @@ TEMPLATE = lib
 DEFINES += QT_DEPRECATED_WARNINGS MERE_UTILS_LIB
 
 SOURCES += \
+    src/merei18nutils.cpp \
         src/mereutils.cpp \
     src/meresignal.cpp \
     src/merestringutils.cpp \
@@ -13,6 +14,7 @@ SOURCES += \
     src/merefileutils.cpp
 
 HEADERS += \
+    src/merei18nutils.h \
         src/mereutils.h \
         src/mereutilsglobal.h \
     src/meresignal.h \
