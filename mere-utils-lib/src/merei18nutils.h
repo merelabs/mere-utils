@@ -17,6 +17,9 @@ namespace Mere
 
 class MERE_UTILS_LIBSPEC MereI18nUtils
 {
+private:
+    MereI18nUtils(){}
+
 public:
     static bool apply();
     static bool apply(QLocale locale);
@@ -24,8 +27,6 @@ public:
     static bool apply(QTranslator *translator, QLocale locale);
 
 private:
-    MereI18nUtils();
-
     static bool exist(QLocale locale);
     static QString i18nFile(QLocale locale);
     static QString i18nPath();

@@ -4,11 +4,6 @@
 #include <QFileInfo>
 #include <QCoreApplication>
 
-MereI18nUtils::MereI18nUtils()
-{
-
-}
-
 //static
 bool MereI18nUtils::apply()
 {
@@ -46,7 +41,6 @@ bool MereI18nUtils::apply(QTranslator *translator, QLocale locale)
 
     return true;
 }
-
 
 //static
 bool MereI18nUtils::exist(QLocale locale)
@@ -89,6 +83,7 @@ QString MereI18nUtils::i18nPath()
     return i18nMerePath().append("/").append(qAppName()).append("/").append("i18n");
 }
 
+//static
 QString MereI18nUtils::i18nMerePath()
 {
     return i18nBasePath().append("/mere");

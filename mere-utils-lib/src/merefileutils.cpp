@@ -3,7 +3,6 @@
 
 #include <QFileInfo>
 #include <QMimeDatabase>
-#include <QDebug>
 
 bool MereFileUtils::isExist(const QString &path)
 {

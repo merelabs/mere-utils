@@ -1,7 +1,5 @@
 #include "mereutils.h"
 
-#include <QString>
-#include <QStringList>
 #include <QProcessEnvironment>
 
 void MereUtils::expandEnvVar(QString &str)
