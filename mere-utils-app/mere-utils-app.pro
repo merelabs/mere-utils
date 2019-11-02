@@ -8,12 +8,11 @@ SOURCES += \
 
 HEADERS += \
 
-
-DEPENDPATH += . ../lib
+INCLUDEPATH += src
 INCLUDEPATH += ../include
+INCLUDEPATH += /usr/local/include
 
 LIBS += -L$$PWD/../lib -lmere-utils
-LIBS += -lX11
 
 #
 # Install
