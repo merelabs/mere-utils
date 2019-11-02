@@ -4,6 +4,9 @@ TARGET = mere-utils
 VERSION = 0.0.1b
 TEMPLATE = lib
 
+CONFIG += shared
+#CONFIG += static
+
 DEFINES += QT_DEPRECATED_WARNINGS MERE_UTILS_LIB
 
 DEFINES += LIB_CODE=\\\"$$TARGET\\\"
@@ -40,8 +43,8 @@ DESTDIR += \"$$LIBDIR\"
 #
 unix {
     target.path = /usr/local/lib
-#    INSTALLS += target
-    INSTALLS += $$DESTDIR
+    INSTALLS += target
+#    INSTALLS += $$DESTDIR
 
     INSTALL_PREFIX = /usr/local/include/mere/mere-utils
     for(header, HEADERS) {

@@ -1,3 +1,5 @@
+include(../mere-utils-lib/mere-utils-lib.pri)
+
 QT       -= gui
 
 TARGET = mere-utils
@@ -8,11 +10,11 @@ SOURCES += \
 
 HEADERS += \
 
-INCLUDEPATH += src
-INCLUDEPATH += ../include
-INCLUDEPATH += /usr/local/include
+#INCLUDEPATH += src
+#INCLUDEPATH += ../include
+#INCLUDEPATH += /usr/local/include
 
-LIBS += -L$$PWD/../lib -lmere-utils
+#LIBS += -L$$PWD/../lib -lmere-utils
 
 #
 # Install
