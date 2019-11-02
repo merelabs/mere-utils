@@ -1,4 +1,5 @@
 .qmake.stash
+mere-utils
 Makefile
 lib/
 mere-utils.pro.user
