@@ -8,7 +8,7 @@ CONFIG += shared
 
 DEFINES += QT_DEPRECATED_WARNINGS MERE_UTILS_LIB
 
-DEFINES += LIB_CODE=\\\"$$TARGET\\\"
+DEFINES += LIB_CODE=\\\"utils\\\"
 DEFINES += LIB_NAME=\\\"$$TARGET\\\"
 DEFINES += LIB_VERSION=\\\"$$VERSION\\\"
 
@@ -52,6 +52,7 @@ defineTest(copy) {
 }
 
 copy($$HEADERS, $$PWD/../include/mere/utils)
+
 #
 # Install
 #
