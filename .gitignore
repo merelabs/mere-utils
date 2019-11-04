@@ -4,6 +4,7 @@ moc_*
 mere-utils
 Makefile
 lib/
+include/
 mere-utils.pro.user
 mere-utils.pro.user.*
 
