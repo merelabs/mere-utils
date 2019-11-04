@@ -1,8 +1,10 @@
-QT -= gui
+QT += core
+
+CONFIG += c++11
+CONFIG += console
 
 TARGET = mere-utils-tests
 TEMPLATE = app
-CONFIG += console
 
 SOURCES += \
         src/main.cpp \
