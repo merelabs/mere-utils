@@ -2,7 +2,7 @@
 
 bool MereStringUtils::isBlank(const QString& str)
 {
-    return str.isNull() || str.isEmpty();
+    return str.isNull() || isEmpty(trim(str));
 }
 
 bool MereStringUtils::isNotBlank(const QString& str)
