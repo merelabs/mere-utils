@@ -1,6 +1,6 @@
 include(../mere-utils-lib/mere-utils-lib.pri)
 
-QT += core
+QT = core
 
 TARGET = mere-utils
 TEMPLATE = app 
