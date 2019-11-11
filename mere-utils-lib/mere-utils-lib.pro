@@ -12,9 +12,10 @@ DEFINES += LIB_CODE=\\\"$$TARGET\\\"
 DEFINES += LIB_NAME=\\\"$$TARGET\\\"
 DEFINES += LIB_VERSION=\\\"$$VERSION\\\"
 
-CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
+#CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
 
 SOURCES += \
+    src/mereapputils.cpp \
     src/merei18nutils.cpp \
     src/mereutils.cpp \
     src/meresignal.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
     src/merefileutils.cpp
 
 HEADERS += \
+    src/mereapputils.h \
     src/merei18nutils.h \
     src/mereutils.h \
     src/mereutilsglobal.h \
