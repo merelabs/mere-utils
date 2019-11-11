@@ -9,8 +9,8 @@ class MERE_UTILS_LIBSPEC MereAppUtils : public QObject
 {
     Q_OBJECT
 public:
-    QString appCode() const;
-    void setAppCode(const QString &code);
+    static QString appCode();
+    static void setAppCode(const QString &code);
 
 private:
     MereAppUtils(){}

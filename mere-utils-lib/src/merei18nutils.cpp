@@ -1,3 +1,4 @@
+#include "mereapputils.h"
 #include "merei18nutils.h"
 #include "merestringutils.h"
 
@@ -71,7 +72,10 @@ QString MereI18nUtils::i18nFile(QLocale locale)
 //static
 QString MereI18nUtils::i18nPattern()
 {
+    QString code = MereAppUtils::appCode();
     QString path = i18nPath();
+
+
     QString pattern = path.append("/").append(qAppName()).append("_%1.qm");
 
     return pattern;
