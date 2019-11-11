@@ -72,11 +72,8 @@ QString MereI18nUtils::i18nFile(QLocale locale)
 //static
 QString MereI18nUtils::i18nPattern()
 {
-    QString code = MereAppUtils::appCode();
     QString path = i18nPath();
-
-
-    QString pattern = path.append("/").append(qAppName()).append("_%1.qm");
+    QString pattern = path.append("/").append(MereAppUtils::appCode()).append("_%1.qm");
 
     return pattern;
 }
@@ -84,7 +81,7 @@ QString MereI18nUtils::i18nPattern()
 //static
 QString MereI18nUtils::i18nPath()
 {
-    return i18nMerePath().append("/").append(qAppName()).append("/").append("i18n");
+    return i18nMerePath().append("/").append(MereAppUtils::appCode()).append("/").append("i18n");
 }
 
 //static
