@@ -2,6 +2,11 @@
 
 MereSignal::MereSignal(QObject *parent) : QObject(parent)
 {
+    if (::socketpair(AF_UNIX, SOCK_STREAM, 0, g_fd))
+        qFatal("Couldn't create SIG* socketpair");
+
+    socketNotifier = new QSocketNotifier(g_fd[1], QSocketNotifier::Read, this);
+    connect(socketNotifier, SIGNAL(activated(int)), this, SLOT(handleSignal()));
 }
 
 void MereSignal::watch(int signal)
@@ -12,23 +17,33 @@ void MereSignal::watch(int signal)
             watchSIGHUP();
             break;
 
+        case SIGQUIT:
+            watchSIGQUIT();
+            break;
+
+        case SIGTERM:
+            watchSIGTERM();
+            break;
+
         default:
+            qDebug() << "INFO: Unhandled SIGNAL";
             break;
     }
 }
 
 void MereSignal::watchSIGHUP()
 {
-    if (::socketpair(AF_UNIX, SOCK_STREAM, 0, fileDescriptor))
-    {
-        qFatal("Couldn't create HUP socketpair");
-        return;
-    }
-
-    socketNotifier = new QSocketNotifier(fileDescriptor[1], QSocketNotifier::Read, this);
-    connect(socketNotifier, SIGNAL(activated(int)), this, SLOT(handleSignal()));
-
     setupUnixSignal(SIGHUP);
+}
+
+void MereSignal::watchSIGQUIT()
+{
+    setupUnixSignal(SIGQUIT);
+}
+
+void MereSignal::watchSIGTERM()
+{
+    setupUnixSignal(SIGTERM);
 }
 
 int MereSignal::setupUnixSignal(int signal)
@@ -47,20 +62,18 @@ int MereSignal::setupUnixSignal(int signal)
     return 0;
 }
 
-void MereSignal::signalHandler(int)
+void MereSignal::signalHandler(int signal)
 {
-    char a = 1;
-    ::write(fileDescriptor[0], &a, sizeof(a));
+    ::write(g_fd[0], &signal, sizeof(signal));
 }
 
 void MereSignal::handleSignal()
 {
     socketNotifier->setEnabled(false);
-    char tmp;
-    ::read(fileDescriptor[1], &tmp, sizeof(tmp));
+    int signal;
+    ::read(g_fd[1], &signal, sizeof(signal));
 
-    // do Qt stuff
-    emit fired(SIGHUP);
+    emit fired(signal);
 
     socketNotifier->setEnabled(true);
 }

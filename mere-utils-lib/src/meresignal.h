@@ -10,9 +10,7 @@
 #include <QObject>
 #include <QSocketNotifier>
 
-
-static int fileDescriptor[2];
-
+static int g_fd[2];
 class MERE_UTILS_LIBSPEC MereSignal : public QObject
 {
     Q_OBJECT
@@ -22,9 +20,11 @@ public:
 
 private:
     static int setupUnixSignal(int signal);
-    static void signalHandler(int unused);
+    static void signalHandler(int signal);
 
     void watchSIGHUP();
+    void watchSIGQUIT();
+    void watchSIGTERM();
 
 signals:
     void fired(int);
