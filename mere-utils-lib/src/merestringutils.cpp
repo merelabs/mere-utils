@@ -20,6 +20,15 @@ bool MereStringUtils::isNotEmpty(const QString& str)
     return !isEmpty(str);
 }
 
+bool MereStringUtils::isInteger(const QString& str, const int &base)
+{
+    bool ok;
+
+    str.toInt(&ok, base);
+
+    return ok;
+}
+
 QString MereStringUtils::trim(const QString& str)
 {
     return str.trimmed();

@@ -13,6 +13,8 @@ public:
     static bool isNotBlank(const QString& str);
     static bool isEmpty(const QString& str);
     static bool isNotEmpty(const QString& str);
+    static bool isInteger(const QString& str, const int &base = 10);
+
     static QString trim(const QString& str);
     static QString upper(const QString& str);
     static QString lower(const QString& str);
