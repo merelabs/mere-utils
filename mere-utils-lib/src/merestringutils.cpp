@@ -1,6 +1,6 @@
 #include "merestringutils.h"
 
-bool isInteger(const QString& str, int base)
+bool MereStringUtils::isInteger(const QString& str, int base)
 {
     bool ok;
 
