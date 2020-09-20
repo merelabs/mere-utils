@@ -9,6 +9,7 @@ private:
     MereStringUtils(){}
 
 public:
+    static bool isInteger(const QString& str, int base = 10);
     static bool isBlank(const QString& str);
     static bool isNotBlank(const QString& str);
     static bool isEmpty(const QString& str);

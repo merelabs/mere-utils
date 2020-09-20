@@ -1,5 +1,14 @@
 #include "merestringutils.h"
 
+bool isInteger(const QString& str, int base)
+{
+    bool ok;
+
+    str.toInt(&ok, base);
+
+    return ok;
+}
+
 bool MereStringUtils::isBlank(const QString& str)
 {
     return str.isNull() || str.isEmpty();
