@@ -1,7 +1,7 @@
-#ifndef MERESIGNAL_H
-#define MERESIGNAL_H
+#ifndef MERE_UTILS_SIGNALUTILS_H
+#define MERE_UTILS_SIGNALUTILS_H
 
-#include "mereutilsglobal.h"
+#include "utilsglobal.h"
 
 #include <signal.h>
 #include <unistd.h>
@@ -10,12 +10,18 @@
 #include <QObject>
 #include <QSocketNotifier>
 
+namespace Mere
+{
+
+namespace Utils
+{
+
 static int g_fd[2];
-class MERE_UTILS_LIBSPEC MereSignal : public QObject
+class MERE_UTILS_LIBSPEC SignalUtils : public QObject
 {
     Q_OBJECT
 public:
-    explicit MereSignal(QObject *parent = nullptr);
+    explicit SignalUtils(QObject *parent = nullptr);
     void watch(int signal);
 
 private:
@@ -38,4 +44,6 @@ private:
     QSocketNotifier *socketNotifier;
 };
 
-#endif // MERESIGNAL_H
+}
+}
+#endif // MERE_UTILS_SIGNALUTILS_H

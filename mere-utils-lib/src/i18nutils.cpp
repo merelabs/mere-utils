@@ -1,38 +1,38 @@
-#include "mereapputils.h"
-#include "merei18nutils.h"
-#include "merestringutils.h"
+#include "apputils.h"
+#include "i18nutils.h"
+#include "stringutils.h"
 
 #include <QFileInfo>
 #include <QCoreApplication>
 
 //static
-bool MereI18nUtils::apply()
+bool Mere::Utils::I18nUtils::apply()
 {
     QLocale locale = QLocale::system();
     return apply(locale);
 }
 
 //static
-bool MereI18nUtils::apply(QLocale locale)
+bool Mere::Utils::I18nUtils::apply(QLocale locale)
 {
     QTranslator *translator = new QTranslator();
     return apply(translator, locale);
 }
 
 //static
-bool MereI18nUtils::apply(QTranslator *translator)
+bool Mere::Utils::I18nUtils::apply(QTranslator *translator)
 {
     QLocale locale = QLocale::system();
     return apply(translator, locale);
 }
 
 //static
-bool MereI18nUtils::apply(QTranslator *translator, QLocale locale)
+bool Mere::Utils::I18nUtils::apply(QTranslator *translator, QLocale locale)
 {
     QCoreApplication::removeTranslator(translator);
 
     QString path = i18nFile(locale);
-    if (MereStringUtils::isBlank(path))
+    if (Mere::Utils::StringUtils::isBlank(path))
         return false;
 
     bool ok = translator->load(path);
@@ -44,7 +44,7 @@ bool MereI18nUtils::apply(QTranslator *translator, QLocale locale)
 }
 
 //static
-bool MereI18nUtils::exist(QLocale locale)
+bool Mere::Utils::I18nUtils::exist(QLocale locale)
 {
     QString name = locale.name();
 
@@ -57,7 +57,7 @@ bool MereI18nUtils::exist(QLocale locale)
 }
 
 //static
-QString MereI18nUtils::i18nFile(QLocale locale)
+QString Mere::Utils::I18nUtils::i18nFile(QLocale locale)
 {
     QString name = locale.name();
 
@@ -70,34 +70,34 @@ QString MereI18nUtils::i18nFile(QLocale locale)
 }
 
 //static
-QString MereI18nUtils::i18nPattern()
+QString Mere::Utils::I18nUtils::i18nPattern()
 {
     QString path = i18nPath();
-    QString pattern = path.append("/").append(MereAppUtils::appCode()).append("_%1.qm");
+    QString pattern = path.append("/").append(Mere::Utils::AppUtils::appCode()).append("_%1.qm");
 
     return pattern;
 }
 
 //static
-QString MereI18nUtils::i18nPath()
+QString Mere::Utils::I18nUtils::i18nPath()
 {
-    return i18nMerePath().append("/").append(MereAppUtils::appCode()).append("/").append("i18n");
+    return i18nMerePath().append("/").append(Mere::Utils::AppUtils::appCode()).append("/").append("i18n");
 }
 
 //static
-QString MereI18nUtils::i18nMerePath()
+QString Mere::Utils::I18nUtils::i18nMerePath()
 {
     return i18nBasePath().append("/mere");
 }
 
 //static
-QString MereI18nUtils::i18nBasePath()
+QString Mere::Utils::I18nUtils::i18nBasePath()
 {
     return "/usr/local/share";
 }
 
 //static
-QString MereI18nUtils::fallback(QLocale locale)
+QString Mere::Utils::I18nUtils::fallback(QLocale locale)
 {
     QString lang = locale.languageToString(locale.language());
     QString pattern = i18nPattern();

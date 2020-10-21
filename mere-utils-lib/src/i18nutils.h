@@ -1,7 +1,7 @@
-#ifndef MEREI18NUTILS_H
-#define MEREI18NUTILS_H
+#ifndef MERE_UTILS_I18NUTILS_H
+#define MERE_UTILS_I18NUTILS_H
 
-#include "mereutilsglobal.h"
+#include "utilsglobal.h"
 
 #include <QTranslator>
 #include <QLocale>
@@ -15,10 +15,16 @@ namespace Mere
     }
 }
 
-class MERE_UTILS_LIBSPEC MereI18nUtils
+namespace Mere
+{
+
+namespace Utils
+{
+
+class MERE_UTILS_LIBSPEC I18nUtils
 {
 private:
-    MereI18nUtils(){}
+    I18nUtils(){}
 
 public:
     static bool apply();
@@ -38,5 +44,6 @@ private:
     static QString fallback(QLocale locale);
 
 };
-
-#endif // MEREI18NUTILS_H
+}
+}
+#endif // MERE_UTILS_I18NUTILS_H

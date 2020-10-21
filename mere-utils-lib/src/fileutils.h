@@ -1,12 +1,18 @@
-#ifndef MEREFILEUTILS_H
-#define MEREFILEUTILS_H
+#ifndef MERE_UTILS_FILEUTILS_H
+#define MERE_UTILS_FILEUTILS_H
 
-#include "mereutilsglobal.h"
+#include "utilsglobal.h"
 
-class MERE_UTILS_LIBSPEC MereFileUtils
+namespace Mere
+{
+
+namespace Utils
+{
+
+class MERE_UTILS_LIBSPEC FileUtils
 {
 private:
-    MereFileUtils(){}
+    FileUtils(){}
 
 public:
     static bool isExist(const QString &path);
@@ -17,4 +23,5 @@ public:
     static bool isNotExecutable(const QString &path);
 };
 
-#endif // MEREFILEUTILS_H
+} }
+#endif // MERE_UTILS_FILEUTILS_H

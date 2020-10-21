@@ -1,15 +1,15 @@
-#include "mereapputils.h"
+#include "apputils.h"
 
 #include <QCoreApplication>
 
 //static
-QString MereAppUtils::appCode()
+QString Mere::Utils::AppUtils::appCode()
 {
     return qApp->property("appCode").toString();
 }
 
 //static
-void MereAppUtils::setAppCode(const QString &code)
+void Mere::Utils::AppUtils::setAppCode(const QString &code)
 {
     qApp->setProperty("appCode", code);
 }

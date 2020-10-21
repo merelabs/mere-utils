@@ -1,12 +1,18 @@
-#ifndef MERESTRINGUTILS_H
-#define MERESTRINGUTILS_H
+#ifndef MERE_UTILS_STRINGUTILS_H
+#define MERE_UTILS_STRINGUTILS_H
 
-#include "mereutilsglobal.h"
+#include "utilsglobal.h"
 
-class MERE_UTILS_LIBSPEC MereStringUtils
+namespace Mere
+{
+
+namespace Utils
+{
+
+class MERE_UTILS_LIBSPEC StringUtils
 {
 private:
-    MereStringUtils(){}
+    StringUtils(){}
 
 public:
     static bool isInteger(const QString& str, int base = 10);
@@ -19,4 +25,6 @@ public:
     static QString lower(const QString& str);
 };
 
-#endif // MERESTRINGUTILS_H
+}
+}
+#endif // MERE_UTILS_STRINGUTILS_H

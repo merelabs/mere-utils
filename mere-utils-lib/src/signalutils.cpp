@@ -1,6 +1,6 @@
-#include "meresignal.h"
+#include "signalutils.h"
 
-MereSignal::MereSignal(QObject *parent) : QObject(parent)
+Mere::Utils::SignalUtils::SignalUtils(QObject *parent) : QObject(parent)
 {
     if (::socketpair(AF_UNIX, SOCK_STREAM, 0, g_fd))
         qFatal("Couldn't create SIG* socketpair");
@@ -9,7 +9,7 @@ MereSignal::MereSignal(QObject *parent) : QObject(parent)
     connect(socketNotifier, SIGNAL(activated(int)), this, SLOT(handleSignal()));
 }
 
-void MereSignal::watch(int signal)
+void Mere::Utils::SignalUtils::watch(int signal)
 {
     switch (signal)
     {
@@ -31,26 +31,26 @@ void MereSignal::watch(int signal)
     }
 }
 
-void MereSignal::watchSIGHUP()
+void Mere::Utils::SignalUtils::watchSIGHUP()
 {
     setupUnixSignal(SIGHUP);
 }
 
-void MereSignal::watchSIGQUIT()
+void Mere::Utils::SignalUtils::watchSIGQUIT()
 {
     setupUnixSignal(SIGQUIT);
 }
 
-void MereSignal::watchSIGTERM()
+void Mere::Utils::SignalUtils::watchSIGTERM()
 {
     setupUnixSignal(SIGTERM);
 }
 
-int MereSignal::setupUnixSignal(int signal)
+int Mere::Utils::SignalUtils::setupUnixSignal(int signal)
 {
     struct sigaction signalAction;
 
-    signalAction.sa_handler = MereSignal::signalHandler;
+    signalAction.sa_handler = Mere::Utils::SignalUtils::signalHandler;
     sigemptyset(&signalAction.sa_mask);
 
     signalAction.sa_flags = 0;
@@ -62,12 +62,12 @@ int MereSignal::setupUnixSignal(int signal)
     return 0;
 }
 
-void MereSignal::signalHandler(int signal)
+void Mere::Utils::SignalUtils::signalHandler(int signal)
 {
     ::write(g_fd[0], &signal, sizeof(signal));
 }
 
-void MereSignal::handleSignal()
+void Mere::Utils::SignalUtils::handleSignal()
 {
     socketNotifier->setEnabled(false);
     int signal;

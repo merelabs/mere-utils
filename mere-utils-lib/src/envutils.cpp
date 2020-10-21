@@ -1,8 +1,8 @@
-#include "mereutils.h"
+#include "envutils.h"
 
 #include <QProcessEnvironment>
 
-void MereUtils::expandEnvVar(QString &str)
+void Mere::Utils::EnvUtils::expandEnvVar(QString &str)
 {
     QProcessEnvironment processEnvironment = QProcessEnvironment::systemEnvironment();
 

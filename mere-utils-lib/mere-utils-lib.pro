@@ -5,6 +5,7 @@ VERSION = 0.0.1b
 TEMPLATE = lib
 
 CONFIG += shared
+CONFIG += C++11
 
 DEFINES += QT_DEPRECATED_WARNINGS MERE_UTILS_LIB
 
@@ -12,26 +13,24 @@ DEFINES += LIB_CODE=\\\"$$TARGET\\\"
 DEFINES += LIB_NAME=\\\"$$TARGET\\\"
 DEFINES += LIB_VERSION=\\\"$$VERSION\\\"
 
-#CONFIG(release, debug|release):DEFINES += QT_NO_DEBUG_OUTPUT
-
 SOURCES += \
-    src/mereapputils.cpp \
-    src/merei18nutils.cpp \
-    src/mereutils.cpp \
-    src/meresignal.cpp \
-    src/merestringutils.cpp \
-    src/mereprocessutils.cpp \
-    src/merefileutils.cpp
+    src/apputils.cpp \
+    src/envutils.cpp \
+    src/fileutils.cpp \
+    src/i18nutils.cpp \
+    src/processutils.cpp \
+    src/signalutils.cpp \
+    src/stringutils.cpp
 
 HEADERS += \
-    src/mereapputils.h \
-    src/merei18nutils.h \
-    src/mereutils.h \
-    src/mereutilsglobal.h \
-    src/meresignal.h \
-    src/merestringutils.h \
-    src/mereprocessutils.h \
-    src/merefileutils.h
+    src/apputils.h \
+    src/envutils.h \
+    src/fileutils.h \
+    src/i18nutils.h \
+    src/processutils.h \
+    src/signalutils.h \
+    src/stringutils.h \
+    src/utilsglobal.h
 
 DESTDIR = $$PWD/../lib
 
