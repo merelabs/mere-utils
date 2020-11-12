@@ -1,7 +1,7 @@
 #ifndef MERE_UTILS_APPUTILS_H
 #define MERE_UTILS_APPUTILS_H
 
-#include "utilsglobal.h"
+#include "global.h"
 
 #include <QObject>
 

@@ -1,7 +1,7 @@
 #ifndef MERE_UTILS_PROCESSUTILS_H
 #define MERE_UTILS_PROCESSUTILS_H
 
-#include "utilsglobal.h"
+#include "global.h"
 
 namespace Mere
 {

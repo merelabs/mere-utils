@@ -11,7 +11,7 @@ bool Mere::Utils::StringUtils::isInteger(const QString& str, int base)
 
 bool Mere::Utils::StringUtils::isBlank(const QString& str)
 {
-    return str.isNull() || str.isEmpty();
+    return str.isNull() || str.isEmpty() || str.trimmed().isEmpty();
 }
 
 bool Mere::Utils::StringUtils::isNotBlank(const QString& str)
@@ -34,12 +34,75 @@ QString Mere::Utils::StringUtils::trim(const QString& str)
     return str.trimmed();
 }
 
+QString& Mere::Utils::StringUtils::upper(QString& str)
+{
+    if (isBlank(str))
+        return str;
+
+    if (str.isUpper())
+        return str;
+
+    for(int i = 0; i < str.length(); i++)
+    {
+        QChar ch(str.at(i));
+
+        if (ch.isUpper()) continue;
+
+        str.replace(i, 1, QChar(str.at(i)).toUpper());
+    }
+
+    return str;
+}
+
 QString Mere::Utils::StringUtils::upper(const QString& str)
 {
+    if (str.isUpper())
+        return str;
+
     return str.toUpper();
+}
+
+QString& Mere::Utils::StringUtils::lower(QString& str)
+{
+    if (isBlank(str))
+        return str;
+
+    if (str.isLower())
+        return str;
+
+    for(int i = 0; i < str.length(); i++)
+    {
+        QChar ch(str.at(i));
+
+        if (ch.isLower()) continue;
+
+        str.replace(i, 1, QChar(str.at(i)).toLower());
+    }
+
+    return str;
 }
 
 QString Mere::Utils::StringUtils::lower(const QString& str)
 {
+    if (str.isLower())
+        return str;
+
     return str.toLower();
+}
+
+int Mere::Utils::StringUtils::indexOf(const QString& str, const QString &sub, uint occurrence)
+{
+    if (occurrence == 0) return -1;
+
+    int pos = str.indexOf(sub);
+    if (pos == -1) return -1;
+
+    int len = sub.length();
+    while (--occurrence)
+    {
+        pos = str.indexOf(sub, pos + len + 1);
+        if (pos == -1) break;
+    }
+
+    return pos;
 }

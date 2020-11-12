@@ -18,6 +18,7 @@ SOURCES += \
     src/envutils.cpp \
     src/fileutils.cpp \
     src/i18nutils.cpp \
+    src/iconutils.cpp \
     src/processutils.cpp \
     src/signalutils.cpp \
     src/stringutils.cpp
@@ -26,13 +27,12 @@ HEADERS += \
     src/apputils.h \
     src/envutils.h \
     src/fileutils.h \
+    src/global.h \
     src/i18nutils.h \
+    src/iconutils.h \
     src/processutils.h \
     src/signalutils.h \
-    src/stringutils.h \
-    src/utilsglobal.h
-
-DESTDIR = $$PWD/../lib
+    src/stringutils.h
 
 #
 # Install

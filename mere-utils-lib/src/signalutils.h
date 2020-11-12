@@ -1,7 +1,7 @@
 #ifndef MERE_UTILS_SIGNALUTILS_H
 #define MERE_UTILS_SIGNALUTILS_H
 
-#include "utilsglobal.h"
+#include "global.h"
 
 #include <signal.h>
 #include <unistd.h>

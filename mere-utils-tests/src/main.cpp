@@ -1,9 +1,9 @@
-#include <QCoreApplication>
+#include <QtTest/QtTest>
+
+#include "teststring.h"
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication app(argc, argv);
-
-    return app.exec();
+    QTEST_MAIN_IMPL(TestString)
 }
 

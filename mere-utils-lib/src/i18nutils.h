@@ -1,7 +1,7 @@
 #ifndef MERE_UTILS_I18NUTILS_H
 #define MERE_UTILS_I18NUTILS_H
 
-#include "utilsglobal.h"
+#include "global.h"
 
 #include <QTranslator>
 #include <QLocale>

@@ -1,19 +1,20 @@
-QT       -= gui
+QT += testlib
 
 TARGET = mere-utils-tests
 TEMPLATE = app 
 
 SOURCES += \
-        src/main.cpp \
+    src/main.cpp \
+    src/teststring.cpp
 
 HEADERS += \
+    src/teststring.h
 
+INCLUDEPATH += ../mere-utils-lib/src
 
-DEPENDPATH += . ../lib
-INCLUDEPATH += ../include
-
-LIBS += -L$$PWD/../lib -lmere-utils
+LIBS += -lmere-utils
 LIBS += -lX11
+
 
 #
 # Install
