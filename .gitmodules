@@ -1,0 +1,3 @@
+[submodule "mere-utils-lib"]
+	path = mere-utils-lib
+	url = https://github.com/merelabs/mere-utils-lib.git
