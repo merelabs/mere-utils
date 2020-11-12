@@ -1,0 +1,56 @@
+#include "fileutils.h"
+#include "stringutils.h"
+
+#include <QFileInfo>
+#include <QMimeDatabase>
+
+bool Mere::Utils::FileUtils::isExist(const QString &path)
+{
+    if (Mere::Utils::StringUtils::isBlank(path))
+    {
+        qDebug() << "Path cant be emoty or null!";
+        return false;
+    }
+
+    QFileInfo info(path);
+
+    return info.exists();
+}
+
+bool Mere::Utils::FileUtils::isNotExist(const QString &path)
+{
+    return !isExist(path);
+}
+
+bool Mere::Utils::FileUtils::isBinary(const QString &path)
+{
+    if (!FileUtils::isExist(path))
+        return false;
+
+    QMimeDatabase mimeDatabase;
+    QMimeType mimeType = mimeDatabase.mimeTypeForFile(path);
+
+    if (mimeType.name().contains("application/x-executable"))
+        return true;
+
+    return false;
+}
+
+bool Mere::Utils::FileUtils::isNotBinary(const QString &path)
+{
+    return !isBinary(path);
+}
+
+bool Mere::Utils::FileUtils::isExecutable(const QString &path)
+{
+    if (!FileUtils::isExist(path))
+        return false;
+
+    QFileInfo info(path);
+    return info.isExecutable();
+}
+
+bool Mere::Utils::FileUtils::isNotExecutable(const QString &path)
+{
+    return !isExecutable(path);
+}
