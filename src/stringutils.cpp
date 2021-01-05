@@ -14,6 +14,13 @@ bool Mere::Utils::StringUtils::isBlank(const QString& str)
     return str.isNull() || str.isEmpty() || str.trimmed().isEmpty();
 }
 
+bool Mere::Utils::StringUtils::isBlank(const char *c_str)
+{
+    if (c_str == nullptr) return true;
+
+    return std::char_traits<char>::length(c_str) == 0;
+}
+
 bool Mere::Utils::StringUtils::isNotBlank(const QString& str)
 {
     return !isBlank(str);

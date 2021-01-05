@@ -32,6 +32,14 @@ public:
      * @return
      */
     static bool isBlank(const QString& str);
+
+    /**
+     * @brief isBlank
+     * @param c_str - Pointer to a null terminated c-style string
+     * @return
+     */
+    static bool isBlank(const char *c_str);
+
     static bool isNotBlank(const QString& str);
 
     /**
