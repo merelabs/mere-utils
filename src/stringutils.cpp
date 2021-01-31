@@ -1,5 +1,7 @@
 #include "stringutils.h"
 
+#include <iostream>
+
 bool Mere::Utils::StringUtils::isInteger(const QString& str, int base)
 {
     bool ok;
@@ -9,9 +11,23 @@ bool Mere::Utils::StringUtils::isInteger(const QString& str, int base)
     return ok;
 }
 
-bool Mere::Utils::StringUtils::isBlank(const QString& str)
+bool Mere::Utils::StringUtils::isBlank(const QString &str)
 {
     return str.isNull() || str.isEmpty() || str.trimmed().isEmpty();
+}
+
+bool Mere::Utils::StringUtils::isBlank(const std::string &str)
+{
+    if (str.length() == 0)
+        return true;
+
+    for(auto ch : str)
+    {
+        if(!std::isspace(ch))
+            return false;
+    }
+
+    return true;
 }
 
 bool Mere::Utils::StringUtils::isBlank(const char *c_str)
@@ -39,6 +55,37 @@ bool Mere::Utils::StringUtils::isNotEmpty(const QString& str)
 QString Mere::Utils::StringUtils::trim(const QString& str)
 {
     return str.trimmed();
+}
+
+std::string& Mere::Utils::StringUtils::trim(std::string &str)
+{
+    // from left
+    str = str.erase(0, str.find_first_not_of(" "));
+
+    // from right
+    str = str.erase(str.find_last_not_of(" "), str.length());
+
+    return str;
+}
+
+//static
+bool Mere::Utils::StringUtils::isStartsWidth(const std::string &str, const std::string &sub)
+{
+    std::size_t found = str.find(sub);
+    if (found == 0)
+        return true;
+
+    return false;
+}
+
+//static
+bool Mere::Utils::StringUtils::isEndsWidth(const std::string &str, const std::string &sub)
+{
+    std::size_t found = str.find(sub);
+    if (found == str.length() - sub.length())
+        return true;
+
+    return false;
 }
 
 QString& Mere::Utils::StringUtils::upper(QString& str)
