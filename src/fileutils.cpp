@@ -4,6 +4,7 @@
 #include <QFileInfo>
 #include <QMimeDatabase>
 
+
 bool Mere::Utils::FileUtils::isExist(const QString &path)
 {
     if (Mere::Utils::StringUtils::isBlank(path))

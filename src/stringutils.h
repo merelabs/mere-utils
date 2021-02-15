@@ -12,7 +12,7 @@ namespace Utils
 class MERE_UTILS_LIBSPEC StringUtils
 {
 private:
-    StringUtils(){}
+    StringUtils() = default;
 
 public:
     static bool isInteger(const QString& str, int base = 10);

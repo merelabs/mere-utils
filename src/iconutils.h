@@ -12,7 +12,7 @@ namespace Utils
 class MERE_UTILS_LIBSPEC IconUtils
 {
 private:
-    IconUtils(){}
+    IconUtils() = default;
 
 public:
     static QString fromMime(const QString &mime);

@@ -15,16 +15,19 @@ DEFINES += LIB_VERSION=\\\"$$VERSION\\\"
 
 SOURCES += \
     src/apputils.cpp \
+    src/binutils.cpp \
     src/envutils.cpp \
     src/fileutils.cpp \
     src/i18nutils.cpp \
     src/iconutils.cpp \
     src/processutils.cpp \
     src/signalutils.cpp \
-    src/stringutils.cpp
+    src/stringutils.cpp \
+    src/xutils.cpp
 
 HEADERS += \
     src/apputils.h \
+    src/binutils.h \
     src/envutils.h \
     src/fileutils.h \
     src/global.h \
@@ -32,7 +35,8 @@ HEADERS += \
     src/iconutils.h \
     src/processutils.h \
     src/signalutils.h \
-    src/stringutils.h
+    src/stringutils.h \
+    src/xutils.h
 
 #
 # Install

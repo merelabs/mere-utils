@@ -24,7 +24,7 @@ namespace Utils
 class MERE_UTILS_LIBSPEC I18nUtils
 {
 private:
-    I18nUtils(){}
+    I18nUtils() = default;
 
 public:
     static bool apply();

@@ -89,48 +89,16 @@ void Mere::Utils::SignalUtils::signalHandler(int signal, siginfo_t *si, void *uc
 {
     qDebug() << "Multiple param called...";
     ::write(g_fd[0], &signal, sizeof(signal));
-
-
-    qDebug() << "1...." << si->si_signo;
-    qDebug() << "2...." << si->si_code;
-//    std::ostringstream oss;
-//    oss.write((const char *)si->si_signo, sizeof(si->si_signo));
-
-//    std::string str = oss.str();
-//    const char *data = str.data();
-//    unsigned int size = str.size();
-
-//    ::write(g_fd[0], data, size);
-
-//    QDataStream os;
-//    os << si->si_signo;
-//    os << si->si_errno;
-//    os << si->si_code;
-//    os << si->si_pid;
-//    os << si->si_uid;
-
-//    os.
 }
 
 void Mere::Utils::SignalUtils::handleSignal()
 {
     socketNotifier->setEnabled(false);
 
-
     int signal;
     ::read(g_fd[1], &signal, sizeof(signal));
 
     emit fired(signal);
-
-//    std::string str;
-//    ::read(g_fd[1], &signal, sizeof(signal));
-
-
-//    std::istringstream(str);
-
-
-//    siginfo_t siginfo;
-//    emit fired(siginfo);
 
     socketNotifier->setEnabled(true);
 }

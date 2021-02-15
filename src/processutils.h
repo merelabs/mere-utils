@@ -12,7 +12,7 @@ namespace Utils
 class MERE_UTILS_LIBSPEC ProcessUtils
 {
 private:
-    ProcessUtils(){}
+    ProcessUtils() = default;
 
 };
 }

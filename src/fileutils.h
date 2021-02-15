@@ -12,7 +12,7 @@ namespace Utils
 class MERE_UTILS_LIBSPEC FileUtils
 {
 private:
-    FileUtils(){}
+    FileUtils() = default;
 
 public:
     static bool isExist(const QString &path);
