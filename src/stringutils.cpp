@@ -42,6 +42,11 @@ bool Mere::Utils::StringUtils::isNotBlank(const QString& str)
     return !isBlank(str);
 }
 
+bool Mere::Utils::StringUtils::isNotBlank(const std::string &str)
+{
+    return !isBlank(str);
+}
+
 bool Mere::Utils::StringUtils::isEmpty(const QString& str)
 {
     return str.isEmpty();

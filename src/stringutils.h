@@ -42,6 +42,7 @@ public:
     static bool isBlank(const char *c_str);
 
     static bool isNotBlank(const QString& str);
+    static bool isNotBlank(const std::string &str);
 
     /**
      * @brief isEmpty
