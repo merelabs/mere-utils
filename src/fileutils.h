@@ -11,10 +11,11 @@ namespace Utils
 
 class MERE_UTILS_LIBSPEC FileUtils
 {
-private:
     FileUtils() = default;
-
 public:
+    static bool touch(const std::string &path);
+
+    static bool isExist(const std::string &path);
     static bool isExist(const QString &path);
     static bool isNotExist(const QString &path);
     static bool isBinary(const QString &path);
