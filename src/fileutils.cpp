@@ -23,9 +23,7 @@ bool Mere::Utils::FileUtils::isExist(const QString &path)
         return false;
     }
 
-    QFileInfo info(path);
-
-    return info.exists();
+    return isExist(path.toStdString());
 }
 
 bool Mere::Utils::FileUtils::isNotExist(const QString &path)

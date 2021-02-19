@@ -14,7 +14,6 @@ class MERE_UTILS_LIBSPEC EnvUtils
     EnvUtils() = default;
 public:
     static void expandEnvVar(std::string &str);
-    static void expandEnvVar(QString &str);
 };
 
 }
