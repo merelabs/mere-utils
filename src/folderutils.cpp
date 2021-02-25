@@ -85,9 +85,9 @@ bool Mere::Utils::FolderUtils::isValidTarget(const std::string &target)
 {
     QFileInfo targetDir(target.c_str());
 
-    if (!targetDir.isWritable())
+    if (targetDir.exists() && !targetDir.isWritable())
     {
-        std::cout << "target is not writeable." << std::endl;
+        std::cout << "permission error, destination is not writeable." << std::endl;
         return false;
     }
 
