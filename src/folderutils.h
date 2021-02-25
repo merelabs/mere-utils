@@ -15,6 +15,9 @@ class MERE_UTILS_LIB_SPEC FolderUtils final
 public:
     static int copy(const std::string &source, const std::string &target, const bool &recursive = true);
 
+private:
+    static bool isValidSource(const std::string &source);
+    static bool isValidTarget(const std::string &target);
 };
 
 }
