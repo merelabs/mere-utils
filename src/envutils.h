@@ -9,13 +9,11 @@ namespace Mere
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC EnvUtils
+class MERE_UTILS_LIB_SPEC EnvUtils
 {
-private:
-    EnvUtils(){}
-
+    EnvUtils() = default;
 public:
-    static void expandEnvVar(QString &str);
+    static void expandEnvVar(std::string &str);
 };
 
 }

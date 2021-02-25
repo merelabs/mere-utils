@@ -1,8 +1,19 @@
 #include "fileutils.h"
 #include "stringutils.h"
 
+#include <fstream>
 #include <QFileInfo>
 #include <QMimeDatabase>
+
+bool Mere::Utils::FileUtils::touch(const std::string &path)
+{
+    return std::ofstream(path).good();
+}
+
+bool Mere::Utils::FileUtils::isExist(const std::string &path)
+{
+    return std::fstream(path).good();
+}
 
 bool Mere::Utils::FileUtils::isExist(const QString &path)
 {
@@ -12,9 +23,7 @@ bool Mere::Utils::FileUtils::isExist(const QString &path)
         return false;
     }
 
-    QFileInfo info(path);
-
-    return info.exists();
+    return isExist(path.toStdString());
 }
 
 bool Mere::Utils::FileUtils::isNotExist(const QString &path)

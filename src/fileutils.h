@@ -9,12 +9,13 @@ namespace Mere
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC FileUtils
+class MERE_UTILS_LIB_SPEC FileUtils
 {
-private:
-    FileUtils(){}
-
+    FileUtils() = default;
 public:
+    static bool touch(const std::string &path);
+
+    static bool isExist(const std::string &path);
     static bool isExist(const QString &path);
     static bool isNotExist(const QString &path);
     static bool isBinary(const QString &path);
@@ -23,5 +24,6 @@ public:
     static bool isNotExecutable(const QString &path);
 };
 
-} }
+}
+}
 #endif // MERE_UTILS_FILEUTILS_H

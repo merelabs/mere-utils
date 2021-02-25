@@ -3,24 +3,19 @@
 
 #include "global.h"
 
-#include <QObject>
-
 namespace Mere
 {
 
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC AppUtils : public QObject
+class MERE_UTILS_LIB_SPEC AppUtils
 {
-    Q_OBJECT
+    AppUtils() = default;
 public:
     static QString appCode();
     static void setAppCode(const QString &code);
 
-private:
-    AppUtils(){}
-    explicit AppUtils(QObject *parent = nullptr){}
 };
 
 }
