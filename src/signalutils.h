@@ -18,7 +18,7 @@ namespace Utils
 
 static int g_fd[2];
 
-class MERE_UTILS_LIBSPEC SignalUtils : public QObject
+class MERE_UTILS_LIB_SPEC SignalUtils : public QObject
 {
     Q_OBJECT
 public:

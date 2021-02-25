@@ -18,6 +18,7 @@ SOURCES += \
     src/binutils.cpp \
     src/envutils.cpp \
     src/fileutils.cpp \
+    src/folderutils.cpp \
     src/i18nutils.cpp \
     src/iconutils.cpp \
     src/processutils.cpp \
@@ -30,6 +31,7 @@ HEADERS += \
     src/binutils.h \
     src/envutils.h \
     src/fileutils.h \
+    src/folderutils.h \
     src/global.h \
     src/i18nutils.h \
     src/iconutils.h \

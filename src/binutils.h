@@ -8,11 +8,9 @@ namespace Mere
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC BinUtils final
+class MERE_UTILS_LIB_SPEC BinUtils final
 {
-private:
     BinUtils() = default;
-
 public:
     static QString find(const QString &binary);
 };

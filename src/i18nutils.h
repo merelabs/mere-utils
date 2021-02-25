@@ -21,7 +21,7 @@ namespace Mere
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC I18nUtils
+class MERE_UTILS_LIB_SPEC I18nUtils
 {
 private:
     I18nUtils() = default;

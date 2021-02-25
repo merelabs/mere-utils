@@ -9,7 +9,7 @@ namespace Mere
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC EnvUtils
+class MERE_UTILS_LIB_SPEC EnvUtils
 {
     EnvUtils() = default;
 public:

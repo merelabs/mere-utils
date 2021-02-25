@@ -9,7 +9,7 @@ namespace Mere
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC FileUtils
+class MERE_UTILS_LIB_SPEC FileUtils
 {
     FileUtils() = default;
 public:
@@ -24,5 +24,6 @@ public:
     static bool isNotExecutable(const QString &path);
 };
 
-} }
+}
+}
 #endif // MERE_UTILS_FILEUTILS_H

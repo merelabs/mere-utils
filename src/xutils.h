@@ -1,17 +1,16 @@
 #ifndef XUTILS_H
 #define XUTILS_H
 
+#include "global.h"
+
 namespace Mere
 {
 namespace Utils
 {
 
-
-class XUtils final
+class MERE_UTILS_LIB_SPEC XUtils final
 {
-private:
     XUtils() = default;
-
 public:
     static int display();
 
@@ -19,5 +18,4 @@ public:
 
 }
 }
-
 #endif // XUTILS_H

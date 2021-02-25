@@ -9,11 +9,9 @@ namespace Mere
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC AppUtils
+class MERE_UTILS_LIB_SPEC AppUtils
 {
-private:
     AppUtils() = default;
-
 public:
     static QString appCode();
     static void setAppCode(const QString &code);

@@ -9,11 +9,9 @@ namespace Mere
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC IconUtils
+class MERE_UTILS_LIB_SPEC IconUtils
 {
-private:
     IconUtils() = default;
-
 public:
     static QString fromMime(const QString &mime);
 
