@@ -5,9 +5,9 @@
 #include <QDebug>
 
 #if defined(MERE_UTILS_LIB)
-#  define MERE_UTILS_LIBSPEC Q_DECL_EXPORT
+#  define MERE_UTILS_LIB_SPEC Q_DECL_EXPORT
 #else
-#  define MERE_UTILS_LIBSPEC Q_DECL_IMPORT
+#  define MERE_UTILS_LIB_SPEC Q_DECL_IMPORT
 #endif
 
 #endif // MERE_UTILS_UTILSGLOBAL_H

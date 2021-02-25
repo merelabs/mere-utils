@@ -17,16 +17,19 @@ namespace Utils
 {
 
 static int g_fd[2];
-class MERE_UTILS_LIBSPEC SignalUtils : public QObject
+
+class MERE_UTILS_LIB_SPEC SignalUtils : public QObject
 {
     Q_OBJECT
 public:
     explicit SignalUtils(QObject *parent = nullptr);
-    void watch(int signal);
+    int watch(int signal);
+    int ignore(int signal);
 
 private:
-    static int setupUnixSignal(int signal);
+    static int setupSignal(int signal);
     static void signalHandler(int signal);
+    static void signalHandler(int signal, siginfo_t *si, void *ucontext);
 
     void watchSIGHUP();
     void watchSIGQUIT();
@@ -34,6 +37,7 @@ private:
 
 signals:
     void fired(int);
+//    void fired(siginfo_t);
 
 public slots:
 

@@ -2,7 +2,6 @@
 #define MERE_UTILS_STRINGUTILS_H
 
 #include "global.h"
-#include <QDebug>
 
 namespace Mere
 {
@@ -10,11 +9,9 @@ namespace Mere
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC StringUtils
+class MERE_UTILS_LIB_SPEC StringUtils
 {
-private:
-    StringUtils(){}
-
+    StringUtils() = default;
 public:
     static bool isInteger(const QString& str, int base = 10);
 
@@ -32,7 +29,18 @@ public:
      * @return
      */
     static bool isBlank(const QString& str);
+
+    static bool isBlank(const std::string &str);
+
+    /**
+     * @brief isBlank
+     * @param c_str - Pointer to a null terminated c-style string
+     * @return
+     */
+    static bool isBlank(const char *c_str);
+
     static bool isNotBlank(const QString& str);
+    static bool isNotBlank(const std::string &str);
 
     /**
      * @brief isEmpty
@@ -49,12 +57,18 @@ public:
     static bool isEmpty(const QString& str);
     static bool isNotEmpty(const QString& str);
     static QString trim(const QString& str);
+    static std::string &trim(std::string &str);
+
 
     static QString& upper(QString& str);
     static QString upper(const QString& str);
 
     static QString& lower(QString& str);
     static QString lower(const QString& str);
+
+    static bool isStartsWidth(const std::string &str, const std::string &sub);
+    static bool isEndsWidth(const std::string &str, const std::string &sub);
+
 
     static int indexOf(const QString& str, const QString &sub, uint occurrence = 1);
 };

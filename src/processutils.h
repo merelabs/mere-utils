@@ -9,11 +9,9 @@ namespace Mere
 namespace Utils
 {
 
-class MERE_UTILS_LIBSPEC ProcessUtils
+class MERE_UTILS_LIB_SPEC ProcessUtils
 {
-private:
-    ProcessUtils(){}
-
+    ProcessUtils() = default;
 };
 }
 }
