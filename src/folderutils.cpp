@@ -37,7 +37,7 @@ int Mere::Utils::FolderUtils::copy(const std::string &source, const std::string 
         targetFile.replace(source.c_str(), targetDir.absoluteFilePath());
 
         QFileInfo info(sourceFile);
-        std::cout << "copy " << sourceFile.toStdString() << " => " << targetFile.toStdString() << std::endl;
+        //std::cout << "copy " << sourceFile.toStdString() << " => " << targetFile.toStdString() << std::endl;
 
         if(info.isFile())
         {
