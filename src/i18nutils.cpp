@@ -99,6 +99,7 @@ QString Mere::Utils::I18nUtils::i18nBasePath()
 //static
 QString Mere::Utils::I18nUtils::fallback(QLocale locale)
 {
+    qDebug() << "XX>>>>>>" << locale.language();
     QString lang = locale.languageToString(locale.language());
     QString pattern = i18nPattern();
 
