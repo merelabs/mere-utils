@@ -2,19 +2,19 @@
 
 #include <sys/stat.h>
 #include <unistd.h>
+#include <iostream>
 
 //static
 bool Mere::Utils::PathUtils::exists(const std::string &path)
 {
-    struct stat st = {0};
-    return stat(path.c_str(), &st) == 0;
+    struct stat s;
+    return stat(path.c_str(), &s) == 0;
 }
 
 //static
-bool remove(const std::string &path)
+bool Mere::Utils::PathUtils::remove(const std::string &path)
 {
-    if(Mere::Utils::PathUtils::exists(path))
-        return false;
+    if(exists(path)) return false;
 
     int err = rmdir(path.c_str());
 
@@ -22,10 +22,9 @@ bool remove(const std::string &path)
 }
 
 //static
-bool create(const std::string &path, int mode)
+bool Mere::Utils::PathUtils::create(const std::string &path, int mode)
 {
-    if(Mere::Utils::PathUtils::exists(path))
-        return false;
+    if(exists(path)) return false;
 
     int err = mkdir(path.c_str(), mode);
 
@@ -33,7 +32,7 @@ bool create(const std::string &path, int mode)
 }
 
 //static
-bool create_if_none(const std::string &path, int mode)
+bool Mere::Utils::PathUtils::create_if_none(const std::string &path, int mode)
 {
-    return Mere::Utils::PathUtils::create(path, mode);
+    return create(path, mode);
 }

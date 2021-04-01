@@ -1,5 +1,5 @@
-#ifndef PATHUTILS_H
-#define PATHUTILS_H
+#ifndef MERE_UTILS_PATHUTILS_H
+#define MERE_UTILS_PATHUTILS_H
 
 #include "global.h"
 
@@ -21,4 +21,4 @@ public:
 
 }
 }
-#endif // PATHUTILS_H
+#endif // MERE_UTILS_PATHUTILS_H
