@@ -1,8 +1,10 @@
 #include "apputils.h"
 #include "i18nutils.h"
 #include "stringutils.h"
+#include "fileutils.h"
 
-#include <QFileInfo>
+#include <iostream>
+
 #include <QCoreApplication>
 
 //static
@@ -31,11 +33,11 @@ bool Mere::Utils::I18nUtils::apply(QTranslator *translator, QLocale locale)
 {
     QCoreApplication::removeTranslator(translator);
 
-    QString path = i18nFile(locale);
+    std::string path = i18nFile(locale);
     if (Mere::Utils::StringUtils::isBlank(path))
         return false;
 
-    bool ok = translator->load(path);
+    bool ok = translator->load(path.c_str());
     if (!ok) return false;
 
     QCoreApplication::installTranslator(translator);
@@ -48,78 +50,67 @@ bool Mere::Utils::I18nUtils::exist(QLocale locale)
 {
     QString name = locale.name();
 
-    QString pattern = i18nPattern();
-    QString path = pattern.arg(name);
+    std::string pattern = i18nPattern();
+    QString path = QString(pattern.c_str()).arg(name);
 
-    QFileInfo file(path);
-
-    return file.exists();
+    return FileUtils::isExist(path);
 }
 
 //static
-QString Mere::Utils::I18nUtils::i18nFile(QLocale locale)
+std::string Mere::Utils::I18nUtils::i18nFile(QLocale locale)
 {
     QString name = locale.name();
 
-    QString pattern = i18nPattern();
-    QString path = pattern.arg(name);
+    std::string pattern = i18nPattern();
+    QString path = QString(pattern.c_str()).arg(name);
 
-    QFileInfo file(path);
-
-    return file.exists() ? path : fallback(locale);
+    return FileUtils::isExist(path) ? path.toStdString() : fallback(locale);
 }
 
 //static
-QString Mere::Utils::I18nUtils::i18nPattern()
+std::string Mere::Utils::I18nUtils::i18nPattern()
 {
-    QString path = i18nPath();
-    QString pattern = path.append("/").append(Mere::Utils::AppUtils::appCode()).append("_%1.qm");
-
-    return pattern;
+    std::string path = i18nPath();
+    return path.append(Mere::Utils::AppUtils::appCode()).append("_%1.qm");
 }
 
 //static
-QString Mere::Utils::I18nUtils::i18nPath()
+std::string Mere::Utils::I18nUtils::i18nPath()
 {
-    return i18nMerePath().append("/").append(Mere::Utils::AppUtils::appCode()).append("/").append("i18n");
+    return i18nMerePath().append(Mere::Utils::AppUtils::appCode().c_str()).append("/").append("i18n/");
 }
 
 //static
-QString Mere::Utils::I18nUtils::i18nMerePath()
+std::string Mere::Utils::I18nUtils::i18nMerePath()
 {
-    return i18nBasePath().append("/mere");
+    return i18nBasePath().append("mere/");
 }
 
 //static
-QString Mere::Utils::I18nUtils::i18nBasePath()
+std::string Mere::Utils::I18nUtils::i18nBasePath()
 {
-    return "/usr/local/share";
+    return "/usr/local/share/";
 }
 
 //static
-QString Mere::Utils::I18nUtils::fallback(QLocale locale)
+std::string Mere::Utils::I18nUtils::fallback(QLocale locale)
 {
-    qDebug() << "XX>>>>>>" << locale.language();
     QString lang = locale.languageToString(locale.language());
-    QString pattern = i18nPattern();
+    QString pattern = QString(i18nPattern().c_str());
 
-    QStringList paths;
-    paths << pattern.arg(lang)
-          << pattern.arg("en_US")
-          << pattern.arg("en");
+    std::vector<std::string> paths {
+            pattern.arg(lang).toStdString(),
+            pattern.arg("en_US").toStdString(),
+            pattern.arg("en").toStdString()
+    };
 
-    QFileInfo file;
-    QString path = "";
-
-    QStringListIterator it(paths);
-    while (it.hasNext())
+    for(const std::string &path : paths)
     {
-        path = it.next();
-        file.setFile(path);
-        if (file.exists()) break;
-        path = "";
-        qDebug() << QString("WARN: Failed to load i18n resource file for fallback - %1").arg(file.absoluteFilePath()) << file.exists();
+        if (FileUtils::isExist(path))
+            return path;
+
+        std::cout << "WARN: Failed to load i18n resource file for fallback - %1" << path << std::endl;
     }
 
-    return path;
+    return "";
 }

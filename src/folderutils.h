@@ -1,5 +1,5 @@
-#ifndef FOLDERUTILS_H
-#define FOLDERUTILS_H
+#ifndef MERE_UTILS_FOLDERUTILS_H
+#define MERE_UTILS_FOLDERUTILS_H
 
 #include "global.h"
 
@@ -22,4 +22,4 @@ private:
 
 }
 }
-#endif // FOLDERUTILS_H
+#endif // MERE_UTILS_FOLDERUTILS_H
