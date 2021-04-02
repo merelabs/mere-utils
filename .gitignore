@@ -1,3 +1,4 @@
 Makefile
 .qmake.stash
 *.so*
+build/

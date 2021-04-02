@@ -2,10 +2,8 @@
 #define MERE_UTILS_I18NUTILS_H
 
 #include "global.h"
-
 #include <QTranslator>
 #include <QLocale>
-#include <QDebug>
 
 namespace Mere
 {
@@ -34,15 +32,13 @@ public:
 
 private:
     static bool exist(QLocale locale);
-    static QString i18nFile(QLocale locale);
-    static QString i18nPath();
-    static QString i18nMerePath();
-    static QString i18nBasePath();
+    static std::string i18nFile(QLocale locale);
+    static std::string i18nPath();
+    static std::string i18nMerePath();
+    static std::string i18nBasePath();
 
-    static QString i18nPattern();
-
-    static QString fallback(QLocale locale);
-
+    static std::string i18nPattern();
+    static std::string fallback(QLocale locale);
 };
 }
 }

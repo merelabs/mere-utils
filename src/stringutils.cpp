@@ -65,10 +65,20 @@ QString Mere::Utils::StringUtils::trim(const QString& str)
 std::string& Mere::Utils::StringUtils::trim(std::string &str)
 {
     // from left
-    str = str.erase(0, str.find_first_not_of(" "));
+    auto pos = str.find_first_not_of(" ");
+    if (pos != std::string::npos)
+    {
+        if (pos != 0)
+            str = str.erase(0, pos);
 
-    // from right
-    str = str.erase(str.find_last_not_of(" "), str.length());
+        // from right
+        pos = str.find_last_not_of(" ");
+        if (pos != std::string::npos && pos != str.length() - 1)
+            str = str.erase(pos + 1);
+    }
+    else
+        str.clear();
+
 
     return str;
 }

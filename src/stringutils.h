@@ -59,7 +59,6 @@ public:
     static QString trim(const QString& str);
     static std::string &trim(std::string &str);
 
-
     static QString& upper(QString& str);
     static QString upper(const QString& str);
 
