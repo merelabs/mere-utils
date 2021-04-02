@@ -1,11 +1,11 @@
-#ifndef ICONUTILS_H
-#define ICONUTILS_H
+#ifndef MERE_UTILS_ICONUTILS_H
+#define MERE_UTILS_ICONUTILS_H
 
 #include "global.h"
+#include <map>
 
 namespace Mere
 {
-
 namespace Utils
 {
 
@@ -13,12 +13,12 @@ class MERE_UTILS_LIB_SPEC IconUtils
 {
     IconUtils() = default;
 public:
-    static QString fromMime(const QString &mime);
+    static std::string fromMime(const std::string &mime);
 
 private:
-    static QMap<QString, QString> MIMETYPES;
+    static std::map<std::string, std::string> MIMETYPES;
 };
 
 }
 }
-#endif // ICONUTILS_H
+#endif // MERE_UTILS_ICONUTILS_H

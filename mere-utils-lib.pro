@@ -21,6 +21,7 @@ SOURCES += \
     src/folderutils.cpp \
     src/i18nutils.cpp \
     src/iconutils.cpp \
+    src/pathutils.cpp \
     src/processutils.cpp \
     src/signalutils.cpp \
     src/stringutils.cpp \
@@ -35,6 +36,7 @@ HEADERS += \
     src/global.h \
     src/i18nutils.h \
     src/iconutils.h \
+    src/pathutils.h \
     src/processutils.h \
     src/signalutils.h \
     src/stringutils.h \

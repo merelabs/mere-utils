@@ -1,5 +1,5 @@
-#ifndef XUTILS_H
-#define XUTILS_H
+#ifndef MERE_UTILS_XUTILS_H
+#define MERE_UTILS_XUTILS_H
 
 #include "global.h"
 
@@ -18,4 +18,4 @@ public:
 
 }
 }
-#endif // XUTILS_H
+#endif // MERE_UTILS_XUTILS_H

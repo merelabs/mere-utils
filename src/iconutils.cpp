@@ -1,6 +1,6 @@
 #include "iconutils.h"
 
-QMap<QString, QString> Mere::Utils::IconUtils::MIMETYPES = {
+std::map<std::string, std::string> Mere::Utils::IconUtils::MIMETYPES = {
     {"image", "file-image.svg"},
     {"audio", "file-audio.svg"},
     {"video", "file-video.svg"},
@@ -28,10 +28,11 @@ QMap<QString, QString> Mere::Utils::IconUtils::MIMETYPES = {
 };
 
 //static
-QString Mere::Utils::IconUtils::fromMime(const QString &mime)
+std::string Mere::Utils::IconUtils::fromMime(const std::string &mime)
 {
-    if (MIMETYPES.contains(mime))
-        return MIMETYPES.value(mime);
+    auto find = MIMETYPES.find(mime);
+    if (find == MIMETYPES.end())
+        return "file.svg";
 
-    return "file.svg";
+    return find->second;
 }

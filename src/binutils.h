@@ -1,5 +1,5 @@
-#ifndef BINUTILS_H
-#define BINUTILS_H
+#ifndef MERE_UTILS_BINUTILS_H
+#define MERE_UTILS_BINUTILS_H
 
 #include "global.h"
 
@@ -12,9 +12,9 @@ class MERE_UTILS_LIB_SPEC BinUtils final
 {
     BinUtils() = default;
 public:
-    static QString find(const QString &binary);
+    static std::string find(const std::string &binary);
 };
 
 }
 }
-#endif // BINUTILS_H
+#endif // MERE_UTILS_BINUTILS_H

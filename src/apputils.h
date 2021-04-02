@@ -13,8 +13,8 @@ class MERE_UTILS_LIB_SPEC AppUtils
 {
     AppUtils() = default;
 public:
-    static QString appCode();
-    static void setAppCode(const QString &code);
+    static std::string appCode();
+    static void setAppCode(const std::string &code);
 
 };
 
