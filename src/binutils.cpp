@@ -1,19 +1,32 @@
 #include "binutils.h"
-#include "stringutils.h"
+#include "fileutils.h"
 
-#include <QProcess>
-#include <QStringList>
+#include <fstream>
+#include <sstream>
 
 //static
 std::string Mere::Utils::BinUtils::find(const std::string &binary)
 {
-    QProcess process;
-    process.start("/usr/bin/which", QStringList() << binary.c_str());
-    process.waitForFinished();
+    char *pathenv = getenv("PATH");
+    if (!pathenv) return "";
 
-    QString path = process.readAllStandardOutput();
-    if(StringUtils::isNotBlank(path))
-        path = path.trimmed();
 
-    return path.toStdString();
+    std::string path;
+
+    std::istringstream iss(pathenv);
+    while (std::getline(iss, path, ':'))
+    {
+        if (path.empty())
+            continue;
+
+        if(path.back() != '/')
+            path.append("/");
+
+        path.append(binary);
+
+        if (FileUtils::isExist(path))
+            return path;
+    }
+
+    return "";
 }
