@@ -12,7 +12,7 @@ bool Mere::Utils::FileUtils::touch(const std::string &path)
 
 bool Mere::Utils::FileUtils::isExist(const std::string &path)
 {
-    return std::fstream(path).good();
+    return std::ifstream(path).good();
 }
 
 bool Mere::Utils::FileUtils::isExist(const QString &path)
