@@ -36,3 +36,18 @@ bool Mere::Utils::PathUtils::create_if_none(const std::string &path, int mode)
 {
     return create(path, mode);
 }
+
+//static
+std::string Mere::Utils::PathUtils::resolve(const std::string &path, int *resolved)
+{
+    char buffer[PATH_MAX];
+    if(realpath(path.c_str(), buffer))
+    {
+        if (resolved) *resolved = 1;
+        return std::string(buffer);
+    }
+
+    if (resolved) *resolved = 0;
+
+    return path;
+}

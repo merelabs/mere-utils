@@ -17,6 +17,7 @@ public:
     static bool remove(const std::string &path);
     static bool create(const std::string &path, int mode = 0755);
     static bool create_if_none(const std::string &path, int mode = 0755);
+    static std::string resolve(const std::string &path, int *resolved = nullptr);
 };
 
 }

@@ -3,36 +3,19 @@
 #include <sstream>
 #include <QDataStream>
 
+int Mere::Utils::SignalUtils::socketPair[2] = {0, 0};
+
 Mere::Utils::SignalUtils::SignalUtils(QObject *parent) : QObject(parent)
 {
-    if (::socketpair(AF_UNIX, SOCK_STREAM, 0, g_fd))
+    if (::socketpair(AF_UNIX, SOCK_STREAM, 0, socketPair))
         qFatal("Couldn't create SIG* socketpair");
 
-    socketNotifier = new QSocketNotifier(g_fd[1], QSocketNotifier::Read, this);
+    socketNotifier = new QSocketNotifier(socketPair[1], QSocketNotifier::Read, this);
     connect(socketNotifier, SIGNAL(activated(int)), this, SLOT(handleSignal()));
 }
 
 int Mere::Utils::SignalUtils::watch(int signal)
 {
-//    switch (signal)
-//    {
-//        case SIGHUP:
-//            watchSIGHUP();
-//            break;
-
-//        case SIGQUIT:
-//            watchSIGQUIT();
-//            break;
-
-//        case SIGTERM:
-//            watchSIGTERM();
-//            break;
-
-//        default:
-//            qDebug() << "INFO: Unhandled SIGNAL";
-//            break;
-//    }
-
     return setupSignal(signal);
 }
 
@@ -80,15 +63,13 @@ int Mere::Utils::SignalUtils::setupSignal(int signal)
 //static
 void Mere::Utils::SignalUtils::signalHandler(int signal)
 {
-    qDebug() << "Single param called...";
-    ::write(g_fd[0], &signal, sizeof(signal));
+    ::write(socketPair[0], &signal, sizeof(signal));
 }
 
 //static
 void Mere::Utils::SignalUtils::signalHandler(int signal, siginfo_t *si, void *ucontext)
 {
-    qDebug() << "Multiple param called...";
-    ::write(g_fd[0], &signal, sizeof(signal));
+    ::write(socketPair[0], &signal, sizeof(signal));
 }
 
 void Mere::Utils::SignalUtils::handleSignal()
@@ -96,7 +77,7 @@ void Mere::Utils::SignalUtils::handleSignal()
     socketNotifier->setEnabled(false);
 
     int signal;
-    ::read(g_fd[1], &signal, sizeof(signal));
+    ::read(socketPair[1], &signal, sizeof(signal));
 
     emit fired(signal);
 
