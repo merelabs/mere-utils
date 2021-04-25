@@ -16,7 +16,6 @@ namespace Mere
 namespace Utils
 {
 
-static int g_fd[2];
 
 class MERE_UTILS_LIB_SPEC SignalUtils : public QObject
 {
@@ -45,6 +44,7 @@ private slots:
     void handleSignal();
 
 private:
+    static int socketPair[2];
     QSocketNotifier *socketNotifier;
 };
 
