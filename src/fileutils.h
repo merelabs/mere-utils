@@ -14,6 +14,7 @@ class MERE_UTILS_LIB_SPEC FileUtils
     FileUtils() = default;
 public:
     static bool touch(const std::string &path);
+    static bool remove(const std::string &path);
 
     static bool isExist(const std::string &path);
     static bool isExist(const QString &path);
