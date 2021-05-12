@@ -10,6 +10,11 @@ bool Mere::Utils::FileUtils::touch(const std::string &path)
     return std::ofstream(path).good();
 }
 
+bool Mere::Utils::FileUtils::remove(const std::string &path)
+{
+    return std::remove(path.c_str()) == 0;
+}
+
 bool Mere::Utils::FileUtils::isExist(const std::string &path)
 {
     return std::ifstream(path).good();
