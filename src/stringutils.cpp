@@ -1,6 +1,7 @@
 #include "stringutils.h"
 
 #include <iostream>
+#include <sstream>
 
 bool Mere::Utils::StringUtils::isInteger(const QString& str, int base)
 {
@@ -64,6 +65,8 @@ QString Mere::Utils::StringUtils::trim(const QString& str)
 
 std::string& Mere::Utils::StringUtils::trim(std::string &str)
 {
+    if (str.empty()) return str;
+
     // from left
     auto pos = str.find_first_not_of(" ");
     if (pos != std::string::npos)
@@ -77,8 +80,9 @@ std::string& Mere::Utils::StringUtils::trim(std::string &str)
             str = str.erase(pos + 1);
     }
     else
+    {
         str.clear();
-
+    }
 
     return str;
 }
@@ -174,4 +178,17 @@ int Mere::Utils::StringUtils::indexOf(const QString& str, const QString &sub, ui
     }
 
     return pos;
+}
+
+//static
+std::vector<std::string> Mere::Utils::StringUtils::split(const std::string &str, char del)
+{
+    std::vector<std::string> parts;
+
+    std::string part;
+    std::stringstream stream (str);
+    while(std::getline(stream , part, del))
+        parts.push_back(part);
+
+    return parts;
 }
