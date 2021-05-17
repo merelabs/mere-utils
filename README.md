@@ -21,7 +21,7 @@ An simple utility library contains common reusable functionality of components t
 
 ## required
 `mere-utils` is required by following app, utility and libaries,
-- [mere-xdg](https://github.com/merelabs/mere-xdg-lib)
+- [mere-xdg](https://github.com/merelabs/mere-xdg)
 - [mere-config-lite](https://github.com/merelabs/mere-config-lite)
 - [mere-finder-lib](https://github.com/merelabs/mere-finder-lib)
 - [mere-launch](https://github.com/merelabs/mere-launch)
