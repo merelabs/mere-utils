@@ -36,7 +36,7 @@ $ make install
 ```
 
 ### support
-If you find a bug, or have a feature suggestion, please [log an issue](https://github.com/merelabs/mere-utils-lib/issues). If you'd like to
+If you find a bug, or have a feature suggestion, please [log an issue](https://github.com/merelabs/mere-utils/issues). If you'd like to
 contribute, please read [How to Contribute](CONTRIBUTING.md).
 
 ## license ##
