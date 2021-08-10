@@ -109,7 +109,7 @@ std::string Mere::Utils::I18nUtils::fallback(QLocale locale)
         if (FileUtils::isExist(path))
             return path;
 
-        std::cout << "WARN: Failed to load i18n resource file for fallback - %1" << path << std::endl;
+        std::cout << "WARN: Failed to load i18n resource file for fallback - " << path << std::endl;
     }
 
     return "";
