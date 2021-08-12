@@ -40,6 +40,8 @@ bool Mere::Utils::I18nUtils::apply(QTranslator *translator, QLocale locale)
     bool ok = translator->load(path.c_str());
     if (!ok) return false;
 
+    std::cout << "Applying following translator resource: " << path << std::endl;
+
     QCoreApplication::installTranslator(translator);
 
     return true;
@@ -95,11 +97,11 @@ std::string Mere::Utils::I18nUtils::i18nBasePath()
 //static
 std::string Mere::Utils::I18nUtils::fallback(QLocale locale)
 {
-    QString lang = locale.languageToString(locale.language());
     QString pattern = QString(i18nPattern().c_str());
 
     std::vector<std::string> paths {
-            pattern.arg(lang).toStdString(),
+            pattern.arg(locale.name()).toStdString(),
+            pattern.arg(locale.bcp47Name()).toStdString(),
             pattern.arg("en_US").toStdString(),
             pattern.arg("en").toStdString()
     };
@@ -109,8 +111,10 @@ std::string Mere::Utils::I18nUtils::fallback(QLocale locale)
         if (FileUtils::isExist(path))
             return path;
 
-        std::cout << "WARN: Failed to load i18n resource file for fallback - %1" << path << std::endl;
+        std::cout << "WARN: Failed to find i18n resource file for fallback - " << path << std::endl;
     }
+
+    std::cout << "Unable to find i18n resource file" << std::endl;
 
     return "";
 }
