@@ -3,6 +3,36 @@
 #include <iostream>
 #include <sstream>
 
+bool Mere::Utils::StringUtils::isBoolean(const QString &value)
+{
+    return isBoolean(value.toStdString());
+}
+
+bool Mere::Utils::StringUtils::isBoolean(const std::string &value)
+{
+    return isTrue(value) || isFalse(value);
+}
+
+bool Mere::Utils::StringUtils::isTrue(const QString &value)
+{
+    return isTrue(value.toStdString());
+}
+
+bool Mere::Utils::StringUtils::isTrue(const std::string &value)
+{
+    return value == "true" || value == "yes" || value == "1";
+}
+
+bool Mere::Utils::StringUtils::isFalse(const QString &value)
+{
+    return isFalse(value.toStdString());
+}
+
+bool Mere::Utils::StringUtils::isFalse(const std::string &value)
+{
+    return value == "false" || value == "no" || value == "0";
+}
+
 bool Mere::Utils::StringUtils::isInteger(const QString& str, int base)
 {
     bool ok;

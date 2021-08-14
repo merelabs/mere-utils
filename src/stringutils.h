@@ -13,6 +13,15 @@ class MERE_UTILS_LIB_SPEC StringUtils
 {
     StringUtils() = default;
 public:
+    static bool isBoolean(const QString &value);
+    static bool isBoolean(const std::string &value);
+
+    static bool isTrue(const QString &value);
+    static bool isTrue(const std::string &value);
+
+    static bool isFalse(const QString &value);
+    static bool isFalse(const std::string &value);
+
     static bool isInteger(const QString &str, int base = 10);
     static int toInt(const QString &value);
     static int toInt(const std::string &value);
