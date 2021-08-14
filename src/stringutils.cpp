@@ -12,6 +12,26 @@ bool Mere::Utils::StringUtils::isInteger(const QString& str, int base)
     return ok;
 }
 
+int Mere::Utils::StringUtils::toInt(const QString &value)
+{
+    return toInt(value.toStdString());
+}
+
+int Mere::Utils::StringUtils::toInt(const std::string &value)
+{
+    int i = 0;
+    try
+    {
+        i = std::stoi(value);
+    }
+    catch (const std::exception &ex)
+    {
+    }
+
+    return i;
+}
+
+
 bool Mere::Utils::StringUtils::isBlank(const QString &str)
 {
     return str.isNull() || str.isEmpty() || str.trimmed().isEmpty();
