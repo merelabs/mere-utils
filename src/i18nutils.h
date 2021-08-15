@@ -16,7 +16,7 @@ private:
 
 public:
     static bool apply();
-    static bool apply(const QLocale &locale);
+    static bool apply(const QLocale &locale, bool fallback = false);
 
 private:
     static std::string i18nPath();

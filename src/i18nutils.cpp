@@ -9,7 +9,7 @@
 bool Mere::Utils::I18nUtils::apply()
 {
     QLocale fallback("en");
-    bool ok = apply(fallback);
+    bool ok = apply(fallback, true);
     if(!ok)
         std::cout << "WARN:: Could not find fallback translator resource for  " << fallback.bcp47Name().toStdString() << std::endl;
 
@@ -19,12 +19,15 @@ bool Mere::Utils::I18nUtils::apply()
 }
 
 //static
-bool Mere::Utils::I18nUtils::apply(const QLocale &locale)
+bool Mere::Utils::I18nUtils::apply(const QLocale &locale, bool fallback)
 {
     QTranslator *translator = new QTranslator();
 
     bool ok = translator->load(locale, "lock", "_", QString::fromStdString(i18nPath()));
     if (!ok) return false;
+
+    if (!fallback && i18nPath().append("lock_en.qm") == translator->filePath().toStdString())
+        return false;
 
     std::cout << "Applying following translator resource: " << translator->filePath().toStdString() << std::endl;
     QCoreApplication::installTranslator(translator);
