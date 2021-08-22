@@ -36,6 +36,11 @@ bool Mere::Utils::FileUtils::isNotExist(const QString &path)
     return !isExist(path);
 }
 
+bool Mere::Utils::FileUtils::isNotExist(const std::string &path)
+{
+    return !isExist(path);
+}
+
 bool Mere::Utils::FileUtils::isBinary(const QString &path)
 {
     if (!FileUtils::isExist(path))
