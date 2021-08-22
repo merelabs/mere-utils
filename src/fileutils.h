@@ -16,9 +16,12 @@ public:
     static bool touch(const std::string &path);
     static bool remove(const std::string &path);
 
-    static bool isExist(const std::string &path);
     static bool isExist(const QString &path);
+    static bool isExist(const std::string &path);
+
     static bool isNotExist(const QString &path);
+    static bool isNotExist(const std::string &path);
+
     static bool isBinary(const QString &path);
     static bool isNotBinary(const QString &path);
     static bool isExecutable(const QString &path);
