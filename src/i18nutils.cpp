@@ -1,33 +1,19 @@
 #include "i18nutils.h"
 #include "apputils.h"
-#include "stringutils.h"
 
 #include <iostream>
 #include <QTranslator>
 #include <QCoreApplication>
 
+//static
 bool Mere::Utils::I18nUtils::apply()
 {
     QLocale fallback("en");
-    bool ok = apply(fallback, true);
-    if(!ok)
-        std::cout << "WARN:: Could not find fallback translator resource for  " << fallback.bcp47Name().toStdString() << std::endl;
+    bool ok = apply(fallback);
+    if(!ok) std::cout << "WARN:: Could not find fallback translator resource for  " << fallback.bcp47Name().toStdString() << std::endl;
 
     QLocale locale = QLocale::system();
-
     return apply(locale, ok);
-}
-
-bool Mere::Utils::I18nUtils::apply(QTranslator &translator)
-{
-    QLocale fallback("en");
-    bool ok = apply(fallback, true);
-    if(!ok)
-        std::cout << "WARN:: Could not find fallback translator resource for  " << fallback.bcp47Name().toStdString() << std::endl;
-
-    QLocale locale = QLocale::system();
-
-    return apply(translator, locale, ok);
 }
 
 //static
@@ -35,23 +21,21 @@ bool Mere::Utils::I18nUtils::apply(const QLocale &locale, bool fallback)
 {
     QTranslator *translator = new QTranslator();
 
-    return apply(*translator, locale, fallback);
-}
-
-bool Mere::Utils::I18nUtils::apply(QTranslator &translator, const QLocale &locale, bool fallback)
-{
-    QCoreApplication::removeTranslator(&translator);
-
-    std::string app = AppUtils::appCode();
-
-    bool ok = translator.load(locale, app.c_str(), "_", QString::fromStdString(i18nPath()));
-    if (!ok) return false;
-
-    if (!fallback && i18nPath().append(app.c_str()).append("_en.qm") == translator.filePath().toStdString())
+    bool ok = translator->load(locale, AppUtils::appCode().c_str(), "_", QString::fromStdString(i18nPath()));
+    if (!ok)
+    {
+        translator->deleteLater();
         return false;
+    }
 
-    std::cout << "Applying following translator resource: " << translator.filePath().toStdString() << std::endl;
-    QCoreApplication::installTranslator(&translator);
+    if (fallback && i18nFallbackPath() == translator->filePath().toStdString())
+    {
+        translator->deleteLater();
+        return false;
+    }
+
+    std::cout << "Applying the following translator resource: " << translator->filePath().toStdString() << std::endl;
+    QCoreApplication::installTranslator(translator);
 
     return ok;
 }
@@ -69,4 +53,9 @@ std::string Mere::Utils::I18nUtils::i18nMerePath()
 std::string Mere::Utils::I18nUtils::i18nBasePath()
 {
     return "/usr/local/share/";
+}
+
+std::string Mere::Utils::I18nUtils::i18nFallbackPath()
+{
+    return i18nPath().append(AppUtils::appCode().c_str()).append("_en.qm");
 }

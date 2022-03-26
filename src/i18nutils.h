@@ -2,8 +2,10 @@
 #define MERE_UTILS_I18NUTILS_H
 
 #include "global.h"
+
 #include <QLocale>
 #include <QTranslator>
+
 namespace Mere
 {
 namespace Utils
@@ -16,14 +18,13 @@ private:
 
 public:
     static bool apply();
-    static bool apply(QTranslator &translator);
     static bool apply(const QLocale &locale, bool fallback = false);
-    static bool apply(QTranslator &translator, const QLocale &locale, bool fallback = false);
 
 private:
     static std::string i18nPath();
     static std::string i18nMerePath();
     static std::string i18nBasePath();
+    static std::string i18nFallbackPath();
 };
 
 }
