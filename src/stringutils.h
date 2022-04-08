@@ -24,6 +24,8 @@ public:
 
     static bool isInteger(const QString &str, int base = 10);
     static int toInt(const QString &value);
+
+    static bool isInteger(const std::string &value);
     static int toInt(const std::string &value);
 
     /**
@@ -83,6 +85,7 @@ public:
     static int indexOf(const QString& str, const QString &sub, uint occurrence = 1);
 
     static std::vector<std::string> split(const std::string &str, char del = ' ');
+    static std::string format(const std::string &format, ...);
 };
 
 }

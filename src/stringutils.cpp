@@ -35,11 +35,7 @@ bool Mere::Utils::StringUtils::isFalse(const std::string &value)
 
 bool Mere::Utils::StringUtils::isInteger(const QString& str, int base)
 {
-    bool ok;
-
-    str.toInt(&ok, base);
-
-    return ok;
+    return isInteger(str.toStdString());
 }
 
 int Mere::Utils::StringUtils::toInt(const QString &value)
@@ -47,20 +43,24 @@ int Mere::Utils::StringUtils::toInt(const QString &value)
     return toInt(value.toStdString());
 }
 
-int Mere::Utils::StringUtils::toInt(const std::string &value)
+bool Mere::Utils::StringUtils::isInteger(const std::string &value)
 {
-    int i = 0;
     try
     {
-        i = std::stoi(value);
+        std::stoi(value);
     }
-    catch (const std::exception &ex)
+    catch (const std::exception &_)
     {
+        return false;
     }
 
-    return i;
+    return true;
 }
 
+int Mere::Utils::StringUtils::toInt(const std::string &value)
+{
+    return std::stoi(value);
+}
 
 bool Mere::Utils::StringUtils::isBlank(const QString &str)
 {
@@ -241,4 +241,10 @@ std::vector<std::string> Mere::Utils::StringUtils::split(const std::string &str,
         parts.push_back(part);
 
     return parts;
+}
+
+//static
+std::string Mere::Utils::StringUtils::format(const std::string &format, ...)
+{
+
 }
