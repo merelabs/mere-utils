@@ -10,7 +10,6 @@ std::string Mere::Utils::BinUtils::find(const std::string &binary)
     char *pathenv = getenv("PATH");
     if (!pathenv) return "";
 
-
     std::string path;
 
     std::istringstream iss(pathenv);
