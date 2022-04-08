@@ -28,6 +28,9 @@ public:
     static bool isInteger(const std::string &value);
     static int toInt(const std::string &value);
 
+    static bool isInt(const std::string &value);
+    static bool isUInt(const std::string &value);
+
     /**
      * @brief isBlank
      *

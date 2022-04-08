@@ -62,6 +62,18 @@ int Mere::Utils::StringUtils::toInt(const std::string &value)
     return std::stoi(value);
 }
 
+bool Mere::Utils::StringUtils::isInt(const std::string &value)
+{
+    return isInteger(value);
+}
+
+bool Mere::Utils::StringUtils::isUInt(const std::string &value)
+{
+    if(!isInt(value)) return false;
+
+    return toInt(value) >= 0;
+}
+
 bool Mere::Utils::StringUtils::isBlank(const QString &str)
 {
     return str.isNull() || str.isEmpty() || str.trimmed().isEmpty();
