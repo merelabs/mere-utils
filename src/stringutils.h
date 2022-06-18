@@ -87,7 +87,7 @@ public:
 
     static int indexOf(const QString& str, const QString &sub, uint occurrence = 1);
 
-    static std::vector<std::string> split(const std::string &str, char del = ' ');
+    static std::vector<std::string> split(const std::string &str, char delim = ' ');
     static std::string format(const std::string &format, ...);
 };
 

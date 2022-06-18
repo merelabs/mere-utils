@@ -243,14 +243,17 @@ int Mere::Utils::StringUtils::indexOf(const QString& str, const QString &sub, ui
 }
 
 //static
-std::vector<std::string> Mere::Utils::StringUtils::split(const std::string &str, char del)
+std::vector<std::string> Mere::Utils::StringUtils::split(const std::string &str, char delim)
 {
     std::vector<std::string> parts;
 
-    std::string part;
-    std::stringstream stream (str);
-    while(std::getline(stream , part, del))
-        parts.push_back(part);
+    std::stringstream stream(str);
+    for(std::string part; std::getline(stream , part, delim); parts.push_back(part));
+
+    // fix: last part may be empty!
+    std::size_t pos = str.find_last_of(delim);
+    if (pos != std::string::npos && pos + 1 == str.size())
+        parts.push_back("");
 
     return parts;
 }
