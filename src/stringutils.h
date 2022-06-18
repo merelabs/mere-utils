@@ -84,7 +84,6 @@ public:
     static bool isStartsWidth(const std::string &str, const std::string &sub);
     static bool isEndsWidth(const std::string &str, const std::string &sub);
 
-
     static int indexOf(const QString& str, const QString &sub, uint occurrence = 1);
 
     static std::vector<std::string> split(const std::string &str, char delim = ' ');
