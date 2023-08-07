@@ -1,4 +1,5 @@
 #include "apputils.h"
+#include "qvariant.h"
 
 #include <QCoreApplication>
 
@@ -11,6 +12,6 @@ std::string Mere::Utils::AppUtils::appCode()
 //static
 void Mere::Utils::AppUtils::setAppCode(const std::string &code)
 {
-    qApp->setProperty("appCode", code.c_str());
+    qApp->setProperty("appCode", QString::fromStdString(code));
 }
 
