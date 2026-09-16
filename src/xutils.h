@@ -3,19 +3,16 @@
 
 #include "global.h"
 
-namespace Mere
-{
-namespace Utils
+namespace Mere::Utils
 {
 
-class MERE_UTILS_LIB_SPEC XUtils final
-{
-    XUtils() = default;
-public:
-    static int display();
+    class MERE_UTILS_LIB_SPEC XUtils final
+    {
+        XUtils() = default;
+    public:
+        static int display();
 
-};
+    };
 
-}
 }
 #endif // MERE_UTILS_XUTILS_H

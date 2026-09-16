@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.16)
 
 
 # set the project name
@@ -23,7 +23,7 @@ set(CMAKE_BUILD_TYPE Release)
 #target_include_directories(mere-utils PUBLIC "${PROJECT_BINARY_DIR}")
 
 # specify the C++ standard
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
@@ -32,7 +32,7 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 #set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(Qt5 COMPONENTS Core REQUIRED)
+find_package(Qt6 COMPONENTS Core REQUIRED)
 
 file(GLOB SOURCES src/*.cpp)
 file(GLOB HEADERS src/*.h)
@@ -47,4 +47,10 @@ install(TARGETS ${PROJECT_NAME}
 ## Install headers
 install(FILES ${HEADERS} DESTINATION include/mere/utils)
 
-target_link_libraries(${PROJECT_NAME} Qt5::Core)
+target_link_libraries(${PROJECT_NAME} Qt6::Core)
+
+SET(CPACK_GENERATOR "DEB")
+#set(CPACK_PACKAGE_CONTACT "bhuiyan.mohammad.iklash@gmail.com")
+#set(CPACK_PACKAGE_LICENSE "BSD-2")
+SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Bhuiyan Mohammad Iklash<bhuiyan.mohammad.iklash@gmail.com>") #required
+INCLUDE(CPack)

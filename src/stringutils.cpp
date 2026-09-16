@@ -1,7 +1,8 @@
 #include "stringutils.h"
 
-#include <iostream>
+#include <string>
 #include <sstream>
+#include <iostream>
 
 bool Mere::Utils::StringUtils::isBoolean(const QString &value)
 {
@@ -227,6 +228,7 @@ QString Mere::Utils::StringUtils::lower(const QString& str)
 
 int Mere::Utils::StringUtils::indexOf(const QString& str, const QString &sub, uint occurrence)
 {
+//    return indexOf(str.toStdString(), sub.toStdString(), occurrence);
     if (occurrence == 0) return -1;
 
     int pos = str.indexOf(sub);
@@ -237,6 +239,21 @@ int Mere::Utils::StringUtils::indexOf(const QString& str, const QString &sub, ui
     {
         pos = str.indexOf(sub, pos + len + 1);
         if (pos == -1) break;
+    }
+
+    return pos;
+}
+
+unsigned long Mere::Utils::StringUtils::indexOf(const std::string& str, const std::string &sub, unsigned int occurrence)
+{
+    long pos = -1;
+    while (occurrence)
+    {
+        pos = str.find(sub, pos + 1);
+        if (pos == std::string::npos)
+            return -1;
+
+        occurrence--;
     }
 
     return pos;
@@ -253,9 +270,30 @@ std::vector<std::string> Mere::Utils::StringUtils::split(const std::string &str,
     // fix: last part may be empty!
     std::size_t pos = str.find_last_of(delim);
     if (pos != std::string::npos && pos + 1 == str.size())
-        parts.push_back("");
+        parts.emplace_back("");
 
     return parts;
+}
+
+//static
+std::string Mere::Utils::StringUtils::join(const std::list<std::string> &list, char delim)
+{
+    if (list.empty())
+        return {};
+
+    if (list.size() == 1)
+        return list.front();
+
+    std::string joined;
+    for(const auto& item : list)
+    {
+        if (joined.empty())
+            joined = item;
+        else
+            joined += (delim + item);
+    }
+
+    return joined;
 }
 
 //static
