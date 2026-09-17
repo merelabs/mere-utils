@@ -2,7 +2,7 @@
 
 #include <string>
 #include <sstream>
-#include <iostream>
+#include <charconv>
 
 bool Mere::Utils::StringUtils::isBoolean(const QString &value)
 {
@@ -61,6 +61,16 @@ bool Mere::Utils::StringUtils::isInteger(const std::string &value)
 int Mere::Utils::StringUtils::toInt(const std::string &value)
 {
     return std::stoi(value);
+}
+
+int Mere::Utils::StringUtils::toInt(const std::string_view &str, int defaultValue)
+{
+    int value{};
+    auto [ptr, ec] = std::from_chars(str.data(), str.data() + str.size(), value);
+    if (ec != std::errc() || ptr != str.data() + str.size())
+        return defaultValue;
+
+    return value;
 }
 
 bool Mere::Utils::StringUtils::isInt(const std::string &value)

@@ -23,6 +23,7 @@ namespace Mere::Utils
 
         static bool isInteger(const std::string &value);
         static int toInt(const std::string &value);
+        static int toInt(const std::string_view &str, int defaultValue = 0);
 
         static bool isInt(const std::string &value);
         static bool isUInt(const std::string &value);
